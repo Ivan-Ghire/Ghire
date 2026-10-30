@@ -2,110 +2,189 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asistente de Turnos - Visualizador & Word</title>
 <style>
+  :root {
+    --bg-main: #111827;
+    --bg-card: #1f2937;
+    --bg-input: #0f172a;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-green: #16a34a;
+    --accent-green-hover: #22c55e;
+    --accent-blue: #2563eb;
+    --accent-blue-hover: #3b82f6;
+    --danger-bg: #451a1a;
+    --danger-border: #ef4444;
+    --success-bg: #14532d;
+    --success-border: #22c55e;
+  }
+
   body {
     font-family: Calibri, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #121820;
-    color: #e0e6ed;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
     margin: 0;
-    padding: 20px;
+    padding: 24px;
     display: flex;
     justify-content: center;
   }
+
   .container {
     width: 100%;
-    max-width: 980px;
-    background-color: #1a222d;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    max-width: 1040px;
+    background-color: var(--bg-card);
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
   }
+
+  h1 {
+    font-size: 20px;
+    margin: 0 0 16px 0;
+    font-weight: 600;
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   textarea {
     width: 100%;
-    height: 180px;
-    background-color: #0d1217;
-    border: 1px solid #2e3c4e;
-    border-radius: 6px;
-    color: #d1d8e0;
-    font-family: monospace;
+    height: 190px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: #f1f5f9;
+    font-family: "Consolas", "Courier New", monospace;
     font-size: 13px;
-    padding: 10px;
+    line-height: 1.5;
+    padding: 14px;
     box-sizing: border-box;
     resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
   }
+
+  textarea:focus {
+    border-color: var(--accent-blue);
+  }
+
   .btn-row {
-    margin: 15px 0 10px 0;
+    margin: 16px 0 14px 0;
     display: flex;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
   }
-  button.word-btn {
-    background-color: #1f7a4d;
-    color: #fff;
+
+  button {
+    font-family: inherit;
+    font-weight: 600;
     border: none;
-    padding: 12px 24px;
-    border-radius: 5px;
+    padding: 12px 22px;
+    border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
+
+  button.word-btn {
+    background-color: var(--accent-green);
+    color: #ffffff;
+  }
+
   button.word-btn:hover {
-    background-color: #28a745;
+    background-color: var(--accent-green-hover);
+    transform: translateY(-1px);
   }
+
+  button.sec-btn {
+    background-color: #334155;
+    color: #f8fafc;
+  }
+
+  button.sec-btn:hover {
+    background-color: #475569;
+  }
+
   #statusBox {
     display: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 12px 16px;
+    border-radius: 6px;
     font-size: 13px;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
   }
+
   .status-ok {
-    background-color: #1c442b;
-    color: #4ade80;
-    border: 1px solid #28a745;
+    background-color: var(--success-bg);
+    color: #bbf7d0;
+    border: 1px solid var(--success-border);
   }
+
   .status-err {
-    background-color: #441c1c;
-    color: #f87171;
-    border: 1px solid #dc3545;
+    background-color: var(--danger-bg);
+    color: #fecaca;
+    border: 1px solid var(--danger-border);
   }
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 22px 0 8px 0;
+  }
+
   .preview-box {
     background-color: #ffffff;
     color: #000000;
-    padding: 20px;
-    border-radius: 6px;
-    margin-top: 10px;
-    border: 1px solid #4a5568;
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
     overflow-x: auto;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
   }
+
   pre {
-    background-color: #0d1217;
-    border: 1px solid #2e3c4e;
-    border-radius: 6px;
-    padding: 15px;
-    color: #c9d1d9;
-    font-family: monospace;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+    color: #cbd5e1;
+    font-family: "Consolas", "Courier New", monospace;
     font-size: 13px;
     white-space: pre-wrap;
     overflow-x: auto;
-    margin-top: 15px;
+    margin: 0;
   }
 </style>
 </head>
 <body>
 
 <div class="container">
-  <textarea id="inputText" placeholder="pega aquí los turnos de girhe..."></textarea>
+  <h1>Visualizador de Turnos Rodalies & Copiador Word</h1>
+  <textarea id="inputText" placeholder="Pega aquí los turnos (desde Girhe o formato libre con >> y <<)..."></textarea>
 
   <div class="btn-row">
-    <button id="btnCopiarWord" class="word-btn" type="button">copiar directo para word</button>
+    <button id="btnCopiarWord" class="word-btn" type="button">📋 Copiar directo para Word</button>
+    <button id="btnLimpiar" class="sec-btn" type="button">Limpiar</button>
   </div>
 
   <div id="statusBox"></div>
 
-  <div id="visualWordTable" class="preview-box"><span style="color: #718096;">pega los turnos arriba para visualizarlos...</span></div>
+  <div class="section-label">Vista previa estilo Microsoft Word:</div>
+  <div id="visualWordTable" class="preview-box">
+    <span style="color: #718096;">Pega los turnos arriba para visualizarlos...</span>
+  </div>
 
-  <p style="font-size: 12px; color: #8b9bb4; margin-bottom: 5px; margin-top: 20px;">vista previa en código markdown:</p>
+  <div class="section-label">Vista previa en Markdown:</div>
   <pre id="outputText"></pre>
 </div>
 
@@ -215,41 +294,36 @@ function getSigla(texto) {
 
 function obtenerColorLinea(tren, inicioSigla, finSigla, isSinServicio, isSC) {
   if (isSC) {
-    return "#718096";
-  }
-  if (isSinServicio || (tren && tren.toLowerCase().indexOf("v ") === 0) || (tren && tren.toLowerCase() === "taxi")) {
-    return "#c53030";
+    return "#718096"; // Gris
   }
 
-  var cleanTren = (tren || "").replace(/^v\s*/i, "").trim();
+  var cleanTren = (tren || "").replace(/^v\s*/i, "").replace(/\./g, "").trim();
+
+  // Trenes 37.xxx (materiales vacíos) en lila
+  if (/^37\d*/.test(cleanTren)) {
+    return "#8e44ad";
+  }
+
+  if (isSinServicio || (tren && tren.toLowerCase().indexOf("v ") === 0) || (tren && tren.toLowerCase() === "taxi")) {
+    return "#c53030"; // Rojo
+  }
+
   if (/^77\d*/.test(cleanTren)) {
-    return "#c05621";
+    return "#c05621"; // Naranja
   }
 
   var ini = (inicioSigla || "").toUpperCase();
   var fin = (finSigla || "").toUpperCase();
 
-  // trayectos vu a sl y sl a cf en verde
-  if (ini.indexOf("VU") !== -1 && fin.indexOf("SL") !== -1) {
-    return "#1e7e34";
-  }
-  if (ini.indexOf("SL") !== -1 && fin.indexOf("CF") !== -1) {
-    return "#1e7e34";
-  }
+  if (ini.indexOf("VU") !== -1 && fin.indexOf("SL") !== -1) return "#1e7e34";
+  if (ini.indexOf("SL") !== -1 && fin.indexOf("CF") !== -1) return "#1e7e34";
 
-  // comerciales sc-bt o bt-sc integrales de extremo a extremo
   var esScBt = (ini.indexOf("SC") !== -1 && fin.indexOf("BT") !== -1) || (ini.indexOf("BT") !== -1 && fin.indexOf("SC") !== -1);
-  if (esScBt) {
-    return "#1e7e34";
-  }
+  if (esScBt) return "#1e7e34";
 
-  // comerciales 28xxx vu-bt o bt-vu
   var esVuBt = (ini.indexOf("VU") !== -1 && fin.indexOf("BT") !== -1) || (ini.indexOf("BT") !== -1 && fin.indexOf("VU") !== -1);
-  if (/^28\d*/.test(cleanTren) && esVuBt) {
-    return "#1e7e34";
-  }
+  if (/^28\d*/.test(cleanTren) && esVuBt) return "#1e7e34";
 
-  // comerciales 25xxx con salida de vu hacia bt autorizados expresamente
   var numBase = cleanTren.replace(/-\d+.*$/, "").trim();
   if (/^25\d*/.test(cleanTren) && ini.indexOf("VU") !== -1 && fin.indexOf("BT") !== -1 && trenes25ExtraVerde.indexOf(numBase) !== -1) {
     return "#1e7e34";
@@ -275,18 +349,22 @@ function procesarUnTurno(bloqueTexto) {
   if (headerMatch) {
     turnoNum = headerMatch[1] ? headerMatch[1] : "";
     fecha = headerMatch[2];
-    var parts = fecha.split("/");
-    var d = new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
-    var dias = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
-    diaSemana = dias[d.getDay()];
+    try {
+      var parts = fecha.split("/");
+      var d = new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
+      var dias = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+      diaSemana = dias[d.getDay()];
+    } catch(e) {}
   } else {
     var dMatch = bloqueTexto.match(/(\d{1,2}\/\d{1,2}\/\d{2,4})/);
     if (dMatch) {
       fecha = dMatch[1];
-      var parts2 = fecha.split("/");
-      var d2 = new Date(parseInt(parts2[2], 10), parseInt(parts2[1], 10) - 1, parseInt(parts2[0], 10));
-      var dias2 = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
-      diaSemana = dias2[d2.getDay()];
+      try {
+        var parts2 = fecha.split("/");
+        var d2 = new Date(parseInt(parts2[2], 10), parseInt(parts2[1], 10) - 1, parseInt(parts2[0], 10));
+        var dias2 = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+        diaSemana = dias2[d2.getDay()];
+      } catch(e) {}
     }
   }
 
@@ -324,10 +402,17 @@ function procesarUnTurno(bloqueTexto) {
     var finSigla = "";
     var deje = "—";
 
-    if (isSC && matches.length === 2) {
+    // Manejo de AC (con soporte para 3 horas y >>)
+    if (isSC) {
       tren = "sc";
-      inicioHora = matches[0];
-      finHora = matches[1];
+      if (matches.length >= 3 && rawLine.indexOf(">>") !== -1) {
+        toma = matches[0];
+        inicioHora = matches[1];
+        finHora = matches[2];
+      } else {
+        inicioHora = matches[0];
+        finHora = matches[1];
+      }
       var preTime = rawLine.split(inicioHora)[0];
       inicioSigla = getSigla(preTime) || "(VU)";
       finSigla = inicioSigla;
@@ -335,23 +420,29 @@ function procesarUnTurno(bloqueTexto) {
       var matchNum = rawLine.match(/\b([vV]?\d{4,5}|taxi|TAXI)\b/);
       tren = matchNum ? matchNum[1].toLowerCase() : "";
 
-      if (matches.length === 4) {
+      if (matches.length >= 4) {
         toma = matches[0];
         inicioHora = matches[1];
         finHora = matches[2];
         deje = matches[3];
       } else if (matches.length === 3) {
-        var idx1 = rawLine.indexOf(matches[1]);
-        var idx2 = rawLine.indexOf(matches[2]);
-        var between1and2 = rawLine.substring(idx1 + 5, idx2);
-        if (/[a-záéíóúñ]/i.test(between1and2)) {
-          toma = matches[0];
-          inicioHora = matches[1];
-          finHora = matches[2];
-        } else {
+        if (rawLine.indexOf("<<") !== -1) {
           inicioHora = matches[0];
           finHora = matches[1];
           deje = matches[2];
+        } else {
+          var idx1 = rawLine.indexOf(matches[1]);
+          var idx2 = rawLine.indexOf(matches[2]);
+          var between1and2 = rawLine.substring(idx1 + 5, idx2);
+          if (/[a-záéíóúñ]/i.test(between1and2)) {
+            toma = matches[0];
+            inicioHora = matches[1];
+            finHora = matches[2];
+          } else {
+            inicioHora = matches[0];
+            finHora = matches[1];
+            deje = matches[2];
+          }
         }
       } else if (matches.length === 2) {
         inicioHora = matches[0];
@@ -362,13 +453,10 @@ function procesarUnTurno(bloqueTexto) {
       inicioSigla = getSigla(preInicio) || "(VU)";
 
       var preFin = rawLine.substring(rawLine.indexOf(inicioHora) + 5, rawLine.indexOf(finHora));
-      finSigla = getSigla(preFin) || "(VU)";
+      var postFin = rawLine.substring(rawLine.indexOf(finHora) + 5);
+      finSigla = getSigla(preFin) || getSigla(postFin) || "(VU)";
 
-      if (isSC) {
-        tren = "sc";
-        toma = "—";
-        deje = "—";
-      } else if (tren === "taxi" || isSinServicio) {
+      if (tren === "taxi" || isSinServicio) {
         if (tren.indexOf("v ") !== 0) {
           tren = "v " + tren.replace(/^v/, "").trim();
         }
@@ -453,7 +541,6 @@ function procesarUnTurno(bloqueTexto) {
       break;
     }
   }
-  var limite = hayReset ? "" : "7:13";
 
   var bloquesFatiga = [];
   var currentBlockStart = null;
@@ -486,6 +573,16 @@ function procesarUnTurno(bloqueTexto) {
     }
   }
 
+  // NUEVA REGLA DE LÍMITE:
+  // Si la fatiga es igual o superior a 4:30h (270 min) -> límite 5:30
+  // En caso contrario, si hay reset queda vacío, si no -> 7:13
+  var limite = "";
+  if (maxFatigaMin >= 270) {
+    limite = "5:30";
+  } else if (!hayReset) {
+    limite = "7:13";
+  }
+
   var fatigaReport = formatDuration(maxFatigaMin) + " (" + maxBloqueIdx + "º bloque)";
   var fatigaConAsterisco = false;
   if (maxFatigaMin > 240) {
@@ -493,9 +590,14 @@ function procesarUnTurno(bloqueTexto) {
     fatigaConAsterisco = true;
   }
 
-  var titulo = ("turno " + turnoNum + " para el " + diaSemana + " " + fecha).replace(/\s+/g, ' ').trim();
+  var titulo = "";
+  if (turnoNum || fecha) {
+    titulo = ("turno " + turnoNum + " para el " + diaSemana + " " + fecha).replace(/\s+/g, ' ').trim();
+  } else {
+    titulo = "turno";
+  }
 
-  // markdown
+  // Construcción Markdown
   var md = titulo + "\n\n";
   md += "| límite | jornada total | conducción real | descanso total | fatiga | coche | casa |\n";
   md += "| :---: | :---: | :---: | :---: | :---: | :---: | :---: |\n";
@@ -512,7 +614,7 @@ function procesarUnTurno(bloqueTexto) {
     md += "| " + sm.tren + " | " + tomaCol + " | " + sm.inicioHora + " " + sm.inicioSigla + " | " + sm.finHora + " " + sm.finSigla + " | " + dejeCol + " | " + formatDuration(dm.condMin) + " | " + dm.descStr + " |\n";
   }
 
-  // estilos word con nowrap y padding optimizado
+  // Estilos Word sin bordes y nowrap
   var t1HeaderStyle = "border: none !important; mso-border-alt: none !important; padding: 4px 0px 8px 0px; font-family: Calibri, sans-serif; font-size: 12pt; font-weight: normal; text-align: center; white-space: nowrap;";
   var t1DataStyle = "border: none !important; mso-border-alt: none !important; padding: 8px 0px 4px 0px; font-family: Calibri, sans-serif; font-size: 12pt; font-weight: normal; text-align: center; white-space: nowrap;";
   var t2BaseStyle = "border: none !important; mso-border-alt: none !important; padding: 3px 0px; font-family: Calibri, sans-serif; font-size: 12pt; font-weight: normal; text-align: center; white-space: nowrap;";
@@ -524,7 +626,7 @@ function procesarUnTurno(bloqueTexto) {
     fatigaContenidoWord = '<span style="background-color: #ffff00; mso-highlight: yellow; padding: 1px 4px; border-radius: 2px;">' + fatigaReport + '</span>';
   }
 
-  // tabla 1: resumen
+  // Tabla 1: Resumen
   htmlWord += '<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: none !important; mso-border-alt: none !important; font-family: Calibri, sans-serif; font-size: 12pt; width: 19.2cm; max-width: 19.2cm; margin-left: auto; margin-right: auto; margin-bottom: 16pt; table-layout: fixed; color: #000000;">';
   htmlWord += '<tr>';
   htmlWord += '<td style="' + t1HeaderStyle + ' width: 1.4cm;">límite</td>';
@@ -547,7 +649,7 @@ function procesarUnTurno(bloqueTexto) {
   htmlWord += '</tr>';
   htmlWord += '</table><br style="line-height: 8pt;">';
 
-  // tabla 2: servicios
+  // Tabla 2: Servicios
   htmlWord += '<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: none !important; mso-border-alt: none !important; font-family: Calibri, sans-serif; font-size: 12pt; width: 19.2cm; max-width: 19.2cm; margin-left: auto; margin-right: auto; table-layout: fixed;">';
   htmlWord += '<tr style="color: #000000;">';
   htmlWord += '<td style="' + t2BaseStyle + ' width: 2.9cm;">tren</td>';
@@ -616,7 +718,7 @@ function ejecutarProcesamiento() {
     var b = document.getElementById("statusBox");
     if (b) b.style.display = "none";
     document.getElementById("outputText").innerText = "";
-    document.getElementById("visualWordTable").innerHTML = '<span style="color: #718096;">pega los turnos arriba para visualizarlos...</span>';
+    document.getElementById("visualWordTable").innerHTML = '<span style="color: #718096;">Pega los turnos arriba para visualizarlos...</span>';
     rawHtmlParaWord = "";
     return 0;
   }
@@ -629,14 +731,20 @@ function ejecutarProcesamiento() {
     var lineTrim = rawLines[i].trim();
     if (/^(turno\s+\w+|d[íi]a\s+\d+)/i.test(lineTrim)) {
       if (bloqueActual.length > 0) {
-        bloques.push(bloqueActual.join("\n"));
-        bloqueActual = [];
+        var txtPrevio = bloqueActual.join("\n");
+        if (/\b[012]?\d:[0-5]\d\b/.test(txtPrevio)) {
+          bloques.push(txtPrevio);
+          bloqueActual = [];
+        }
       }
     }
     bloqueActual.push(rawLines[i]);
   }
   if (bloqueActual.length > 0) {
-    bloques.push(bloqueActual.join("\n"));
+    var txtFinal = bloqueActual.join("\n");
+    if (/\b[012]?\d:[0-5]\d\b/.test(txtFinal)) {
+      bloques.push(txtFinal);
+    }
   }
 
   var totalProcesados = 0;
@@ -660,7 +768,7 @@ function ejecutarProcesamiento() {
   }
 
   if (totalProcesados === 0) {
-    mostrarAviso("no se ha detectado ningún turno válido con horas de trenes.", "err");
+    mostrarAviso("No se ha detectado ningún turno con horas válidas.", "err");
     return 0;
   }
 
@@ -677,14 +785,14 @@ function ejecutarProcesamiento() {
   document.getElementById("outputText").innerText = mdGlobal.trim();
   document.getElementById("visualWordTable").innerHTML = htmlVisual;
 
-  mostrarAviso("se han procesado " + totalProcesados + " turno(s) correctamente.", "ok");
+  mostrarAviso("Se han procesado " + totalProcesados + " turno(s) correctamente.", "ok");
   return totalProcesados;
 }
 
 function copiarDirectoParaWord() {
   var inputEl = document.getElementById("inputText");
   if (!inputEl || !inputEl.value.trim()) {
-    mostrarAviso("el cuadro está vacío. pega al menos un turno antes de procesar.", "err");
+    mostrarAviso("El cuadro está vacío. Pega al menos un turno antes de copiar.", "err");
     return;
   }
 
@@ -713,25 +821,31 @@ function copiarDirectoParaWord() {
     navigator.clipboard.write([
       new ClipboardItem({ "text/html": blobHtml, "text/plain": blobText })
     ]).then(function() {
-      mostrarAviso("¡turnos copiados con éxito! pulsa ctrl + v en word.", "ok");
+      mostrarAviso("¡Copiado con éxito! Ve a Word y pulsa Ctrl + V.", "ok");
     }).catch(function(e) {
-      mostrarAviso("error al copiar: " + e.message, "err");
+      mostrarAviso("Error al copiar al portapapeles: " + e.message, "err");
     });
     return;
   }
 
   if (copiado) {
-    mostrarAviso("¡copiado directo! pulsa ctrl + v en word.", "ok");
+    mostrarAviso("¡Copiado con éxito! Ve a Word y pulsa Ctrl + V.", "ok");
   } else {
-    mostrarAviso("el navegador no ha permitido la inyección. usa ctrl + c.", "err");
+    mostrarAviso("El navegador no permitió la inyección directa. Prueba con Ctrl + C.", "err");
   }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
   var btnW = document.getElementById("btnCopiarWord");
+  var btnL = document.getElementById("btnLimpiar");
   var txt = document.getElementById("inputText");
 
   if (btnW) btnW.addEventListener("click", copiarDirectoParaWord);
+  if (btnL) btnL.addEventListener("click", function() {
+    txt.value = "";
+    ejecutarProcesamiento();
+    txt.focus();
+  });
   if (txt) txt.addEventListener("input", ejecutarProcesamiento);
 
   ejecutarProcesamiento();
