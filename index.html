@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Asistente de Turnos - Visualizador & Word</title>
+<title>TAREAS DESDE 14 DE SEPTIEMBRE - CER-71801-VUG-148V</title>
 <style>
   :root {
-    --bg-main: #111827;
-    --bg-card: #1f2937;
+    --bg-main: #0b1120;
+    --bg-card: #1e293b;
     --bg-input: #0f172a;
     --border-color: #334155;
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
     --accent-green: #16a34a;
     --accent-green-hover: #22c55e;
-    --accent-blue: #2563eb;
-    --accent-blue-hover: #3b82f6;
+    --accent-blue: #38bdf8;
+    --accent-amber: #f59e0b;
     --danger-bg: #451a1a;
     --danger-border: #ef4444;
     --success-bg: #14532d;
@@ -34,27 +34,154 @@
 
   .container {
     width: 100%;
-    max-width: 1040px;
+    max-width: 1060px;
     background-color: var(--bg-card);
-    padding: 28px;
+    padding: 26px;
     border-radius: 12px;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
     border: 1px solid var(--border-color);
   }
 
   h1 {
-    font-size: 20px;
-    margin: 0 0 16px 0;
-    font-weight: 600;
+    font-size: 21px;
+    margin: 0 0 4px 0;
+    font-weight: 700;
     color: #e2e8f0;
+    letter-spacing: 0.02em;
     display: flex;
     align-items: center;
     gap: 10px;
   }
 
+  .subtitle {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    margin: 0 0 16px 0;
+    letter-spacing: 0.03em;
+  }
+
+  /* Panel compacto y alineado */
+  .meta-panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px;
+    background-color: #070d1e;
+    padding: 14px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 14px;
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .field-group label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 16px;
+  }
+
+  .badge-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .badge-festivo {
+    background-color: #78350f;
+    color: #fde68a;
+    border: 1px solid #d97706;
+  }
+
+  .badge-laborable {
+    background-color: #1e293b;
+    color: #94a3b8;
+    border: 1px solid #475569;
+  }
+
+  .field-group input[type="text"],
+  .field-group input[type="date"] {
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: #f1f5f9;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 12px;
+    height: 38px;
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.2s;
+  }
+
+  .field-group input[type="text"] {
+    width: 140px;
+  }
+
+  .field-group input[type="date"] {
+    width: 180px;
+  }
+
+  .field-group input[type="text"]:focus,
+  .field-group input[type="date"]:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+  }
+
+  /* Cuadro festivo compacto y al mismo nivel */
+  .checkbox-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    padding: 0 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s;
+    height: 38px;
+    box-sizing: border-box;
+    width: auto;
+    max-width: fit-content;
+  }
+
+  .checkbox-card:hover {
+    border-color: var(--accent-amber);
+  }
+
+  .checkbox-card input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+    accent-color: var(--accent-amber);
+    margin: 0;
+  }
+
+  .checkbox-card span {
+    font-size: 13px;
+    font-weight: 600;
+    color: #f1f5f9;
+    white-space: nowrap;
+  }
+
   textarea {
     width: 100%;
-    height: 190px;
+    height: 165px;
     background-color: var(--bg-input);
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -62,7 +189,7 @@
     font-family: "Consolas", "Courier New", monospace;
     font-size: 13px;
     line-height: 1.5;
-    padding: 14px;
+    padding: 12px 14px;
     box-sizing: border-box;
     resize: vertical;
     outline: none;
@@ -74,7 +201,7 @@
   }
 
   .btn-row {
-    margin: 16px 0 14px 0;
+    margin: 14px 0;
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
@@ -84,7 +211,7 @@
     font-family: inherit;
     font-weight: 600;
     border: none;
-    padding: 12px 22px;
+    padding: 11px 22px;
     border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
@@ -134,12 +261,12 @@
   }
 
   .section-label {
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 700;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin: 22px 0 8px 0;
+    margin: 20px 0 8px 0;
   }
 
   .preview-box {
@@ -169,19 +296,42 @@
 <body>
 
 <div class="container">
-  <h1>Visualizador de Turnos Rodalies & Copiador Word</h1>
-  <textarea id="inputText" placeholder="Pega aquí los turnos (desde Girhe o formato libre con >> y <<)..."></textarea>
+  <h1>TAREAS DESDE 14 DE SEPTIEMBRE</h1>
+  <p class="subtitle">CER-71801-VUG-148V &bull; Entrada en vigor: 14/09/2026</p>
+
+  <div class="meta-panel">
+    <div class="field-group">
+      <label for="metaTurnoNum">Nº de Turno:</label>
+      <input type="text" id="metaTurnoNum" list="turnosList" placeholder="Ej: 487, 2209..." autofocus autocomplete="off">
+      <datalist id="turnosList"></datalist>
+    </div>
+
+    <div class="field-group">
+      <label for="metaFecha">Fecha: <span id="fechaBadge" class="badge-tag" style="display:none;"></span></label>
+      <input type="date" id="metaFecha">
+    </div>
+
+    <div class="field-group">
+      <label for="metaFestivo">Régimen / Festivo:</label>
+      <label class="checkbox-card" for="metaFestivo">
+        <input type="checkbox" id="metaFestivo">
+        <span>Festivo / Fin de Semana (SD)</span>
+      </label>
+    </div>
+  </div>
+
+  <textarea id="inputText" placeholder="Al poner el número de turno se cargará aquí automáticamente, o puedes pegar texto libre..."></textarea>
 
   <div class="btn-row">
     <button id="btnCopiarWord" class="word-btn" type="button">📋 Copiar directo para Word</button>
-    <button id="btnLimpiar" class="sec-btn" type="button">Limpiar</button>
+    <button id="btnLimpiar" class="sec-btn" type="button">Limpiar todo</button>
   </div>
 
   <div id="statusBox"></div>
 
-  <div class="section-label">Vista previa estilo Microsoft Word:</div>
+  <div class="section-label">Vista previa generada para Word:</div>
   <div id="visualWordTable" class="preview-box">
-    <span style="color: #718096;">Pega los turnos arriba para visualizarlos...</span>
+    <span style="color: #718096;">Introduce un turno o selecciona una fecha...</span>
   </div>
 
   <div class="section-label">Vista previa en Markdown:</div>
@@ -189,6 +339,188 @@
 </div>
 
 <script>
+// ==========================================
+// CÁLCULO DE FESTIVOS OFICIALES (CATALUÑA & ESPAÑA)
+// ==========================================
+function getEasterSunday(year) {
+  var f = Math.floor,
+      G = year % 19,
+      C = f(year / 100),
+      H = (C - f(C / 4) - f((8 * C + 13) / 25) + 19 * G + 15) % 30,
+      I = H - f(H / 28) * (1 - f(29 / (H + 1)) * f((21 - G) / 11)),
+      J = (year + f(year / 4) + I + 2 - C + f(C / 4)) % 7,
+      L = I - J,
+      month = 3 + f((L + 40) / 44),
+      day = L + 28 - 31 * f(month / 4);
+  return new Date(year, month - 1, day);
+}
+
+function evaluarFestivoCompleto(d) {
+  if (!d || isNaN(d.getTime())) return { esFestivo: false, motivo: "" };
+
+  var dayOfWeek = d.getDay();
+  if (dayOfWeek === 0) return { esFestivo: true, motivo: "Domingo (SD)" };
+  if (dayOfWeek === 6) return { esFestivo: true, motivo: "Sábado (SD)" };
+
+  var year = d.getFullYear();
+  var dm = String(d.getDate()).padStart(2, '0') + "/" + String(d.getMonth() + 1).padStart(2, '0');
+
+  var festivosCatalunya = {
+    "01/01": "Año Nuevo",
+    "06/01": "Reyes",
+    "01/05": "Fiesta del Trabajo",
+    "24/06": "Sant Joan",
+    "15/08": "La Asunción",
+    "11/09": "Diada Nacional de Catalunya",
+    "24/09": "La Mercè",
+    "12/10": "Fiesta Nacional de España",
+    "01/11": "Todos los Santos",
+    "06/12": "Día de la Constitución",
+    "08/12": "La Inmaculada",
+    "25/12": "Navidad",
+    "26/12": "Sant Esteve"
+  };
+
+  if (festivosCatalunya[dm]) {
+    return { esFestivo: true, motivo: "Festivo: " + festivosCatalunya[dm] };
+  }
+
+  var easter = getEasterSunday(year);
+  var viernesSanto = new Date(easter);
+  viernesSanto.setDate(easter.getDate() - 2);
+  var lunesPascua = new Date(easter);
+  lunesPascua.setDate(easter.getDate() + 1);
+
+  if (d.getDate() === viernesSanto.getDate() && d.getMonth() === viernesSanto.getMonth()) {
+    return { esFestivo: true, motivo: "Viernes Santo" };
+  }
+  if (d.getDate() === lunesPascua.getDate() && d.getMonth() === lunesPascua.getMonth()) {
+    return { esFestivo: true, motivo: "Lunes de Pascua" };
+  }
+
+  var diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+  return { esFestivo: false, motivo: diasSemana[dayOfWeek] };
+}
+
+function parseFechaSegura(val) {
+  if (!val) return null;
+  if (val.indexOf("-") !== -1) {
+    var p = val.split("-");
+    return new Date(parseInt(p[0], 10), parseInt(p[1], 10) - 1, parseInt(p[2], 10));
+  } else if (val.indexOf("/") !== -1) {
+    var p2 = val.split("/");
+    return new Date(parseInt(p2[2], 10), parseInt(p2[1], 10) - 1, parseInt(p2[0], 10));
+  }
+  return null;
+}
+
+// ==========================================
+// BASE DE DATOS DEL GRÁFICO (PDF CER-71801-VUG-148V)
+// ==========================================
+var t2201 = "12:23 VU 12:38 >> 13:42 BT 28292\nBT 13:58 14:59 VU 28297\nVU 15:38 16:42 BT 28366\nBT 16:58 << 17:59 VU 18:14 28371";
+var t2202 = "11:53 VU 12:08 >> 13:12 BT 28290\nBT 13:28 13:43 BR 28295\nBR 14:07 14:48 MR 77734\nMR 15:03 15:42 BR 77639\nBR 16:06 17:06 SC 25541\nSC 17:30 I 17:49 VU 18:04 V25546";
+var t2203 = "10:23 VU 10:38 >> 11:42 BT 28284\nBT 11:58 12:59 VU 28289\nVU 13:38 14:42 BT 28296\nBT 14:58 << 15:59 VU 16:14 28363";
+var t2204 = "VU 07:00 14:13 VU RVA";
+var t2205 = "06:29 VU 06:44 >> 07:48 BT 25500\nBT 08:18 09:36 SC 25511\nSC 10:02 11:04 BR 25516\nBR 12:06 << 12:43 VU 12:58 25525";
+var t2208 = "06:20 VU 06:35 >> 07:39 BT 28252\nBT 07:58 08:59 VU 28273\nVU 09:38 10:42 BT 28280\nBT 10:58 << 11:59 VU 12:14 28285";
+var t2209 = "05:50 VU 06:05 >> 06:20 VU AC\nVU 06:20 06:35 SC 37877\nSC 07:02 08:21 BT 25504\nBT 08:48 10:06 SC 25513\nSC 10:32 << 10:51 VU 11:06 25518";
+var t2210 = "05:45 VU 06:00 >> 06:15 SC 37981\nSC 06:15 06:32 SC AC\nSC 06:32 07:51 BT 25562\nBT 08:28 << 09:29 VU 09:44 28275";
+var t2211 = "05:45 VU 06:00 I 06:15 SC V37981\nSC 06:15 06:55 SC AC\nSC 06:55 08:27 BR 77408\nBR 08:52 10:27 SC 77514\nSC 11:02 << 11:21 VU 11:36 25520";
+var t2229 = "11:00 VU 11:15 >> 11:36 SC 25519\nSC 12:02 12:21 VU 25524\nVU 12:45 13:06 SC 25525\nSC 13:32 13:51 VU 25530\nVU 14:08 15:12 BT 28298\nBT 15:28 << 16:29 VU 16:44 28365";
+
+var turnosGraficoDB = {
+  "451": {
+    "lmxjv": "17:17 VU 17:32 II 18:07 BR V30516\nBR 18:36 19:36 SC 25551\nSC 20:00 21:21 BT 25556\nBT 21:21 21:48 BT AC\nBT 21:48 23:06 SC 25565\nSC 23:06 23:21 SC AC\nSC 23:21 I 23:41 VU 23:56 TX",
+    "sd": "17:00 VU 17:15 >> 17:36 SC 25543\nSC 18:00 18:19 VU 25548\nVU 19:15 19:36 SC 25551\nSC 20:00 21:04 BR 25556\nBR 21:22 22:57 SC 77564\nSC 23:12 I 23:27 VU 23:42 TX"
+  },
+  "452": {
+    "lmxjv": "16:53 VU 17:08 >> 18:12 BT 28372\nBT 18:12 18:28 BT AC\nBT 18:28 19:29 VU 28377\nVU 20:08 21:12 BT 28384\nBT 21:28 << 22:29 VU 22:44 28389",
+    "sd": "15:53 VU 16:08 >> 16:55 BR 28368\nBR 17:27 17:42 BT 28370\nBT 17:58 18:59 VU 28375\nVU 20:08 21:12 BT 28384\nBT 21:12 21:28 BT AC\nBT 21:28 << 22:29 VU 22:44 28389"
+  },
+  "453": {
+    "lmxjv": "14:53 VU 15:08 >> 16:12 BT 28364\nBT 16:28 16:43 BR 28369\nBR 17:06 17:21 BT 25540\nBT 17:48 18:04 BR 25549\nBR 19:57 20:12 BT 28380\nBT 20:28 << 21:29 VU 21:44 28385",
+    "sd": "15:30 VU 15:45 >> 16:06 SC 25537\nSC 16:30 17:51 BT 25542\nBT 18:18 18:34 BR 25551\nBR 19:57 20:12 BT 28380\nBT 20:12 20:28 BT AC\nBT 20:28 << 21:29 VU 21:44 28385"
+  },
+  "454": { "comun": "VU 22:50 06:00 VU SC" },
+  "455": { "comun": "Salida sin servicio" },
+  "459": {
+    "comun": "17:35 VU 17:50 II 18:34 BR V25546\nBR 19:06 20:06 SC 25553\nSC 20:30 21:51 BT 25558\nBT 21:51 22:19 BT AC\nBT 22:19 << 23:20 VU 23:35 28391"
+  },
+  "460": {
+    "lmxjv": "18:05 VU 18:20 II 19:04 BR V25548\nBR 19:39 19:56 AE 28456\nAE 20:08 21:28 SL 25458\nSL 21:28 22:34 SL AC\nSL 22:34 << 00:20 VU 00:35 28490",
+    "sd": "18:35 VU 18:50 II 19:34 BR V25550\nBR 20:09 20:26 AE 28458\nAE 20:38 21:58 SL 25460\nSL 22:34 << 00:20 VU 00:35 28490"
+  },
+  "461": {
+    "lmxjv": "18:23 VU 18:38 >> 19:25 BR 28378\nBR 20:36 21:36 SC 25559\nSC 21:57 23:20 BT 25566\nBT 23:20 23:49 BT AC\nBT 23:49 << 00:50 VU 01:05 28393",
+    "sd": "19:17 VU 19:32 II 20:07 BR V30546\nBR 20:36 21:36 SC 25559\nSC 21:57 23:20 BT 25566\nBT 23:20 23:49 BT AC\nBT 23:49 << 00:50 VU 01:05 28393"
+  },
+  "462": { "comun": "VU 21:00 04:10 VU SC" },
+  "463": { "comun": "Salida sin servicio" },
+  "467": {
+    "lmxjv": "13:37 VU 13:52 >> 14:51 BT 25530\nBT 15:18 16:36 SC 25539\nSC 17:30 18:51 BT 25546\nBT 18:51 19:18 BT AC\nBT 19:18 20:14 VU 25555\nVU 20:14 << 20:15 SC 20:30 VJ S/D",
+    "sd": "14:23 VU 14:38 >> 15:25 BR 28362\nBR 15:45 16:29 VU 28365\nVU 17:08 18:12 BT 28372\nBT 18:28 19:29 VU 28377\nVU 19:29 << 19:30 SC 19:45 VJ S/D"
+  },
+  "468": {
+    "lmxjv": "11:06 SC 11:21 I 11:22 VU VJ S/D\nVU 11:22 12:04 BR 25520\nBR 12:53 13:15 CF 28566\nCF 13:25 13:48 BR 28520\nBR 14:06 14:21 BT 25528\nBT 14:48 16:06 SC 25537\nSC 16:30 I 16:49 VU 17:04 V25542",
+    "sd": "09:55 SC 10:10 I 10:15 VU TX\nVU 10:15 10:36 SC 25515\nSC 11:02 12:21 BT 25520\nBT 12:48 13:02 BR 25529\nBR 14:06 14:21 BT 25528\nBT 14:48 << 15:44 VU 15:59 25537"
+  },
+  "469": {
+    "lmxjv": "07:23 VU 07:38 >> 08:42 BT 28272\nBT 08:58 09:59 VU 28277\nVU 10:52 11:51 BT 25518\nBT 12:18 13:36 SC 25527\nSC 14:02 I 14:21 VU 14:36 V25532",
+    "sd": "07:23 VU 07:38 >> 08:42 BT 28272\nBT 08:58 09:13 BR 28277\nBR 09:36 10:14 VU 25515\nVU 11:08 12:12 BT 28286\nBT 12:28 << 13:29 VU 13:44 28291"
+  },
+  "470": {
+    "lmxjv": "04:59 VU 05:14 >> 06:59 SL 28500\nSL 08:22 09:45 CF 28560\nCF 09:55 10:18 BR 25490\nBR 10:45 << 11:29 VU 11:44 28283",
+    "sd": "05:22 VU 05:37 >> 06:42 BT 28264\nBT 06:58 07:59 VU 28269\nVU 08:38 09:42 BT 25510\nBT 09:58 10:13 BR 28281\nBR 11:15 << 11:59 VU 12:14 28285"
+  },
+  "471": {
+    "lmxjv": "04:35 VU 04:50 II 05:08 SC V37979\nSC 05:08 05:18 SC AC\nSC 05:18 06:42 BT 28264\nBT 07:28 07:43 BR 28271\nBR 08:07 08:48 MR 77710\nMR 09:03 << 09:35 LH 09:36 77615\nLH 09:36 I 09:42 BR V77614\nBR 10:15 << 10:59 VU 11:14 28281",
+    "sd": "04:30 VU 04:45 >> 06:29 SL 25400\nSL 07:24 07:37 SL AC\nSL 07:37 08:56 AE 28412\nAE 09:08 09:28 BR 25414\nBR 09:45 << 10:29 VU 10:44 28279"
+  },
+  "475": {
+    "lmxjv": "18:30 VU 18:45 II 19:06 SC V25549\nSC 19:30 20:51 BT 25554\nBT 20:51 21:18 BT AC\nBT 21:18 22:36 SC 25563\nSC 22:36 22:45 SC AC\nSC 22:45 << 22:57 VU 23:12 37862",
+    "sd": "18:30 VU 18:45 >> 19:06 SC 25549\nSC 19:30 20:51 BT 25554\nBT 20:51 21:17 BT AC\nBT 21:18 22:36 SC 25563\nSC 22:36 22:45 SC AC\nSC 22:45 << 22:57 VU 23:12 37862"
+  },
+  "476": { "comun": "VU 14:00 21:10 VU SC" },
+  "477": {
+    "lmxjv": "16:23 VU 16:38 >> 17:42 BT 28370\nBT 17:58 18:59 VU 28375\nVU 19:38 20:42 BT 28382\nBT 20:42 20:58 BT AC\nBT 20:58 << 21:59 VU 22:14 28387",
+    "sd": "13:53 VU 14:08 >> 14:55 BR 28298\nBR 16:06 17:06 SC 25541\nSC 17:30 17:49 VU 25546\nVU 18:08 19:12 BT 28376\nBT 19:12 19:28 BT AC\nBT 19:28 << 20:29 VU 20:44 28381"
+  },
+  "478": {
+    "lmxjv": "22:35 BR 22:50 >> 23:05 BT 25564\nBT 23:12 23:31 MO 39515\nMO 00:35 01:05 SL 35570\nSL 01:05 01:20 SL AC\nSL 06:07 07:07 SL AC\nSL 07:07 08:26 AE 28410\nAE 08:38 << 08:58 BR 09:13 25412",
+    "sd": "22:24 BR 22:39 >> 22:56 AE 28482\nAE 23:08 00:28 SL 25470\nSL 00:28 00:45 SL AC\nSL 05:27 06:07 SL AC\nSL 06:07 07:07 BR 28407\nBR 07:27 07:42 BT 28268\nBT 07:58 << 08:59 VU 09:14 28273"
+  },
+  "479": { "comun": "Salida sin servicio" },
+  "483": {
+    "lmxjv": "17:00 VU 17:15 II 17:36 SC V25543\nSC 17:55 19:27 BR 77452\nBR 20:06 20:21 BT 25552\nBT 20:22 20:48 BT AC\nBT 20:48 22:06 SC 25561\nSC 22:06 22:23 SC AC\nSC 22:23 22:38 VU 37982\nVU 22:38 I 22:39 SC 22:54 TX",
+    "sd": "15:23 VU 15:38 >> 16:42 BT 28366\nBT 16:58 17:13 BR 28371\nBR 17:45 18:29 VU 28373\nVU 19:38 20:42 BT 28382\nBT 20:42 20:58 BT AC\nBT 20:58 21:59 VU 28387\nVU 21:59 I 22:04 SC 22:19 TX"
+  },
+  "484": {
+    "lmxjv": "07:54 SC 08:09 I 08:14 VU TX\nVU 08:14 09:01 BR 25482\nBR 09:58 11:23 MA 77415\nMA 11:58 13:21 BR 77532\nBR 13:45 << 14:29 VU 14:44 28295",
+    "sd": "09:48 SC 10:03 I 10:08 VU TX\nVU 10:08 11:12 BT 28282\nBT 11:28 12:29 VU 28287\nVU 13:08 14:12 BT 28294\nBT 14:28 << 15:29 VU 15:44 28299"
+  },
+  "485": { "comun": "VU 06:00 13:10 VU SC" },
+  "486": {
+    "lmxjv": "04:35 VU 04:50 >> 05:08 SC 37979\nSC 05:08 05:40 SC AC\nSC 05:40 07:26 GC 28506\nGC 07:26 08:09 GC AC\nGC 08:09 09:10 CF 28562\nCF 09:11 << 09:40 VU 09:55 37885",
+    "sd": "05:45 VU 06:00 >> 06:15 SC 37981\nSC 06:32 07:51 BT 25562\nBT 08:18 09:36 SC 25511\nSC 09:55 11:27 BR 77420\nBR 11:45 II 12:29 VU 12:44 V28287"
+  },
+  "487": {
+    "lmxjv": "04:30 VU 04:45 >> 05:29 BR 25400\nBR 06:22 07:57 SC 77506\nSC 08:03 08:32 SC AC\nSC 08:32 I 08:51 VU 09:06 V28276",
+    "sd": "04:59 VU 05:14 >> 06:17 BT 28250\nBT 06:17 06:48 BT AC\nBT 06:48 08:06 SC 25505\nSC 08:32 I 08:51 VU 09:06 V28276"
+  },
+
+  // Serie 2200
+  "2201": { "comun": t2201 }, "2212": { "comun": t2201 }, "2225": { "comun": t2201 }, "2238": { "comun": t2201 }, "2251": { "comun": t2201 },
+  "2202": { "comun": t2202 }, "2215": { "comun": t2202 }, "2226": { "comun": t2202 }, "2239": { "comun": t2202 }, "2252": { "comun": t2202 }, "2265": { "comun": t2202 },
+  "2203": { "comun": t2203 }, "2216": { "comun": t2203 }, "2243": { "comun": t2203 }, "2254": { "comun": t2203 }, "2267": { "comun": t2203 },
+  "2204": { "comun": t2204 }, "2217": { "comun": t2204 }, "2230": { "comun": t2204 }, "2257": { "comun": t2204 }, "2268": { "comun": t2204 },
+  "2205": { "comun": t2205 }, "2218": { "comun": t2205 }, "2231": { "comun": t2205 }, "2244": { "comun": t2205 }, "2264": { "comun": t2205 },
+  "2208": { "comun": t2208 }, "2219": { "comun": t2208 }, "2232": { "comun": t2208 }, "2245": { "comun": t2208 }, "2258": { "comun": t2208 },
+  "2209": { "comun": t2209 }, "2222": { "comun": t2209 }, "2233": { "comun": t2209 }, "2246": { "comun": t2209 }, "2259": { "comun": t2209 },
+  "2210": { "comun": t2210 }, "2223": { "comun": t2210 }, "2236": { "comun": t2210 }, "2247": { "comun": t2210 }, "2260": { "comun": t2210 },
+  "2211": { "comun": t2211 }, "2224": { "comun": t2211 }, "2237": { "comun": t2211 }, "2250": { "comun": t2211 }, "2261": { "comun": t2211 },
+  "2229": { "comun": t2229 }, "2240": { "comun": t2229 }, "2253": { "comun": t2229 }, "2266": { "comun": t2229 }
+};
+
 var estacionesDict = {
   "sant vicenç de calders": "(SC)",
   "sant vicenç": "(SC)",
@@ -293,24 +625,17 @@ function getSigla(texto) {
 }
 
 function obtenerColorLinea(tren, inicioSigla, finSigla, isSinServicio, isSC) {
-  if (isSC) {
-    return "#718096"; // Gris
-  }
+  if (isSC) return "#718096";
 
   var cleanTren = (tren || "").replace(/^v\s*/i, "").replace(/\./g, "").trim();
 
-  // Trenes 37.xxx (materiales vacíos) en lila
-  if (/^37\d*/.test(cleanTren)) {
-    return "#8e44ad";
-  }
+  if (/^37\d*/.test(cleanTren)) return "#8e44ad";
 
   if (isSinServicio || (tren && tren.toLowerCase().indexOf("v ") === 0) || (tren && tren.toLowerCase() === "taxi")) {
-    return "#c53030"; // Rojo
+    return "#c53030";
   }
 
-  if (/^77\d*/.test(cleanTren)) {
-    return "#c05621"; // Naranja
-  }
+  if (/^77\d*/.test(cleanTren)) return "#c05621";
 
   var ini = (inicioSigla || "").toUpperCase();
   var fin = (finSigla || "").toUpperCase();
@@ -341,42 +666,39 @@ function procesarUnTurno(bloqueTexto) {
   }
   if (lines.length === 0) return null;
 
-  var turnoNum = "";
+  var turnoNumInput = document.getElementById("metaTurnoNum").value.trim();
+  var fechaInput = document.getElementById("metaFecha").value;
+  var festivoCheckbox = document.getElementById("metaFestivo").checked;
+
+  var turnoNum = turnoNumInput;
   var fecha = "";
   var diaSemana = "";
 
   var headerMatch = bloqueTexto.match(/turno\s*(\w+)?\s*(?:para el\s*)?(?:día|dia)?\s*(\d{1,2}\/\d{1,2}\/\d{2,4})/i);
   if (headerMatch) {
-    turnoNum = headerMatch[1] ? headerMatch[1] : "";
+    if (!turnoNum) turnoNum = headerMatch[1] ? headerMatch[1] : "";
     fecha = headerMatch[2];
-    try {
-      var parts = fecha.split("/");
-      var d = new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
-      var dias = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
-      diaSemana = dias[d.getDay()];
-    } catch(e) {}
   } else {
     var dMatch = bloqueTexto.match(/(\d{1,2}\/\d{1,2}\/\d{2,4})/);
-    if (dMatch) {
-      fecha = dMatch[1];
-      try {
-        var parts2 = fecha.split("/");
-        var d2 = new Date(parseInt(parts2[2], 10), parseInt(parts2[1], 10) - 1, parseInt(parts2[0], 10));
-        var dias2 = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
-        diaSemana = dias2[d2.getDay()];
-      } catch(e) {}
-    }
+    if (dMatch) fecha = dMatch[1];
   }
 
-  var esFinSemanaOFestivo = function() {
-    if (!fecha) return false;
-    var p = fecha.split("/");
-    var dt = new Date(parseInt(p[2], 10), parseInt(p[1], 10) - 1, parseInt(p[0], 10));
-    var dy = dt.getDay();
-    if (dy === 0 || dy === 6) return true;
-    var dm = p[0].padStart(2, '0') + "/" + p[1].padStart(2, '0');
-    return (dm === "24/06" || dm === "15/08" || dm === "11/09" || dm === "24/09");
-  };
+  if (!fecha && fechaInput) {
+    var fParts = fechaInput.split("-");
+    fecha = fParts[2] + "/" + fParts[1] + "/" + fParts[0];
+  }
+
+  var dObj = parseFechaSegura(fecha);
+  var evaluacion = evaluarFestivoCompleto(dObj);
+
+  if (dObj) {
+    diaSemana = evaluacion.motivo.toLowerCase();
+  }
+
+  var textoLower = bloqueTexto.toLowerCase();
+  var textoTieneFestivo = (textoLower.indexOf("festivo") !== -1 || textoLower.indexOf("domingo") !== -1 || textoLower.indexOf("sábado") !== -1 || textoLower.indexOf("sabado") !== -1 || /\b(sd|s\/d)\b/.test(textoLower));
+  
+  var esFestivoFinal = festivoCheckbox || evaluacion.esFestivo || textoTieneFestivo;
 
   var services = [];
 
@@ -391,7 +713,7 @@ function procesarUnTurno(bloqueTexto) {
     if (!matches || matches.length < 2) continue;
 
     var isSC = (line.indexOf("act. complem") !== -1 || line.indexOf("servicios complementarios") !== -1 || line.endsWith(" ac") || line.indexOf(" ac ") !== -1);
-    var isSinServicio = (line.indexOf("viajes sin servicio") !== -1 || line.indexOf("viajero") !== -1 || line.indexOf("taxi") !== -1);
+    var isSinServicio = (line.indexOf("viajes sin servicio") !== -1 || line.indexOf("viajero") !== -1 || line.indexOf("taxi") !== -1 || line.indexOf(" tx") !== -1 || line.indexOf(" vj") !== -1);
     var isConduccion = (line.indexOf("conducción") !== -1 || line.indexOf("conduccion") !== -1);
 
     var tren = "";
@@ -402,11 +724,13 @@ function procesarUnTurno(bloqueTexto) {
     var finSigla = "";
     var deje = "—";
 
-    // Manejo de AC (con soporte para 3 horas y >>)
     if (isSC) {
       tren = "sc";
-      if (matches.length >= 3 && rawLine.indexOf(">>") !== -1) {
+      if (rawLine.indexOf(">>") !== -1 && matches.length >= 3) {
         toma = matches[0];
+        inicioHora = matches[1];
+        finHora = matches[2];
+      } else if (matches.length >= 4) {
         inicioHora = matches[1];
         finHora = matches[2];
       } else {
@@ -417,16 +741,23 @@ function procesarUnTurno(bloqueTexto) {
       inicioSigla = getSigla(preTime) || "(VU)";
       finSigla = inicioSigla;
     } else {
-      var matchNum = rawLine.match(/\b([vV]?\d{4,5}|taxi|TAXI)\b/);
+      var matchNum = rawLine.match(/\b([vV]?\d{4,5}|taxi|TAXI|rva|RVA)\b/);
       tren = matchNum ? matchNum[1].toLowerCase() : "";
 
-      if (matches.length >= 4) {
+      if (rawLine.indexOf(">>") !== -1 && matches.length >= 3) {
+        toma = matches[0];
+        inicioHora = matches[1];
+        finHora = matches[2];
+        deje = "—";
+      } else if (matches.length >= 4) {
         toma = matches[0];
         inicioHora = matches[1];
         finHora = matches[2];
         deje = matches[3];
       } else if (matches.length === 3) {
-        if (rawLine.indexOf("<<") !== -1) {
+        var esDejeFinal = (rawLine.indexOf("<<") !== -1 || rawLine.indexOf(" I ") !== -1 || rawLine.indexOf(" II ") !== -1 || k === lines.length - 1);
+        if (esDejeFinal) {
+          toma = "—";
           inicioHora = matches[0];
           finHora = matches[1];
           deje = matches[2];
@@ -456,8 +787,9 @@ function procesarUnTurno(bloqueTexto) {
       var postFin = rawLine.substring(rawLine.indexOf(finHora) + 5);
       finSigla = getSigla(preFin) || getSigla(postFin) || "(VU)";
 
-      if (tren === "taxi" || isSinServicio) {
-        if (tren.indexOf("v ") !== 0) {
+      if (tren === "taxi" || isSinServicio || (tren && tren.charAt(0) === 'v' && /\d/.test(tren))) {
+        isSinServicio = true;
+        if (tren.indexOf("v ") !== 0 && tren !== "taxi" && tren !== "rva") {
           tren = "v " + tren.replace(/^v/, "").trim();
         }
       }
@@ -466,11 +798,11 @@ function procesarUnTurno(bloqueTexto) {
     if (tren === "28506") tren = "28506-27+VU35";
 
     var cleanTrenNum = tren.replace(/^v\s*/, "");
-    if (esFinSemanaOFestivo() && trenes32.indexOf(cleanTrenNum) !== -1) {
+    if (esFestivoFinal && trenes32.indexOf(cleanTrenNum) !== -1) {
       if (!tren.endsWith("-32")) tren += "-32";
     }
 
-    if (!isSinServicio && !isSC && line.indexOf("act.") === -1) {
+    if (!isSinServicio && !isSC && line.indexOf("act.") === -1 && tren !== "rva") {
       isConduccion = true;
     }
 
@@ -573,14 +905,11 @@ function procesarUnTurno(bloqueTexto) {
     }
   }
 
-  // NUEVA REGLA DE LÍMITE:
-  // Si la fatiga es igual o superior a 4:30h (270 min) -> límite 5:30
-  // En caso contrario, si hay reset queda vacío, si no -> 7:13
   var limite = "";
-  if (maxFatigaMin >= 270) {
+  if (!hayReset || maxFatigaMin >= 270) {
     limite = "5:30";
-  } else if (!hayReset) {
-    limite = "7:13";
+  } else {
+    limite = "";
   }
 
   var fatigaReport = formatDuration(maxFatigaMin) + " (" + maxBloqueIdx + "º bloque)";
@@ -591,13 +920,23 @@ function procesarUnTurno(bloqueTexto) {
   }
 
   var titulo = "";
-  if (turnoNum || fecha) {
-    titulo = ("turno " + turnoNum + " para el " + diaSemana + " " + fecha).replace(/\s+/g, ' ').trim();
+  var etiquetaDia = (diaSemana && diaSemana.indexOf("sábado") === -1 && diaSemana.indexOf("domingo") === -1 && diaSemana.indexOf("festivo") === -1) ? diaSemana + " " : "";
+
+  if (turnoNum && fecha) {
+    titulo = "turno " + turnoNum + " para el " + etiquetaDia + fecha;
+  } else if (turnoNum) {
+    titulo = "turno " + turnoNum;
+  } else if (fecha) {
+    titulo = "turno para el " + etiquetaDia + fecha;
   } else {
     titulo = "turno";
   }
 
-  // Construcción Markdown
+  if (esFestivoFinal && titulo.indexOf("festivo") === -1) {
+    titulo += " (festivo)";
+  }
+  titulo = titulo.replace(/\s+/g, ' ').trim();
+
   var md = titulo + "\n\n";
   md += "| límite | jornada total | conducción real | descanso total | fatiga | coche | casa |\n";
   md += "| :---: | :---: | :---: | :---: | :---: | :---: | :---: |\n";
@@ -614,7 +953,6 @@ function procesarUnTurno(bloqueTexto) {
     md += "| " + sm.tren + " | " + tomaCol + " | " + sm.inicioHora + " " + sm.inicioSigla + " | " + sm.finHora + " " + sm.finSigla + " | " + dejeCol + " | " + formatDuration(dm.condMin) + " | " + dm.descStr + " |\n";
   }
 
-  // Estilos Word sin bordes y nowrap
   var t1HeaderStyle = "border: none !important; mso-border-alt: none !important; padding: 4px 0px 8px 0px; font-family: Calibri, sans-serif; font-size: 12pt; font-weight: normal; text-align: center; white-space: nowrap;";
   var t1DataStyle = "border: none !important; mso-border-alt: none !important; padding: 8px 0px 4px 0px; font-family: Calibri, sans-serif; font-size: 12pt; font-weight: normal; text-align: center; white-space: nowrap;";
   var t2BaseStyle = "border: none !important; mso-border-alt: none !important; padding: 3px 0px; font-family: Calibri, sans-serif; font-size: 12pt; font-weight: normal; text-align: center; white-space: nowrap;";
@@ -626,7 +964,6 @@ function procesarUnTurno(bloqueTexto) {
     fatigaContenidoWord = '<span style="background-color: #ffff00; mso-highlight: yellow; padding: 1px 4px; border-radius: 2px;">' + fatigaReport + '</span>';
   }
 
-  // Tabla 1: Resumen
   htmlWord += '<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: none !important; mso-border-alt: none !important; font-family: Calibri, sans-serif; font-size: 12pt; width: 19.2cm; max-width: 19.2cm; margin-left: auto; margin-right: auto; margin-bottom: 16pt; table-layout: fixed; color: #000000;">';
   htmlWord += '<tr>';
   htmlWord += '<td style="' + t1HeaderStyle + ' width: 1.4cm;">límite</td>';
@@ -649,7 +986,6 @@ function procesarUnTurno(bloqueTexto) {
   htmlWord += '</tr>';
   htmlWord += '</table><br style="line-height: 8pt;">';
 
-  // Tabla 2: Servicios
   htmlWord += '<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: none !important; mso-border-alt: none !important; font-family: Calibri, sans-serif; font-size: 12pt; width: 19.2cm; max-width: 19.2cm; margin-left: auto; margin-right: auto; table-layout: fixed;">';
   htmlWord += '<tr style="color: #000000;">';
   htmlWord += '<td style="' + t2BaseStyle + ' width: 2.9cm;">tren</td>';
@@ -718,7 +1054,7 @@ function ejecutarProcesamiento() {
     var b = document.getElementById("statusBox");
     if (b) b.style.display = "none";
     document.getElementById("outputText").innerText = "";
-    document.getElementById("visualWordTable").innerHTML = '<span style="color: #718096;">Pega los turnos arriba para visualizarlos...</span>';
+    document.getElementById("visualWordTable").innerHTML = '<span style="color: #718096;">Introduce un turno o selecciona una fecha...</span>';
     rawHtmlParaWord = "";
     return 0;
   }
@@ -785,14 +1121,48 @@ function ejecutarProcesamiento() {
   document.getElementById("outputText").innerText = mdGlobal.trim();
   document.getElementById("visualWordTable").innerHTML = htmlVisual;
 
-  mostrarAviso("Se han procesado " + totalProcesados + " turno(s) correctamente.", "ok");
+  mostrarAviso("Turno procesado correctamente.", "ok");
   return totalProcesados;
+}
+
+function buscarYDesplegarTurno() {
+  var rawNum = document.getElementById("metaTurnoNum").value.trim();
+  var checkFestivo = document.getElementById("metaFestivo");
+  var txt = document.getElementById("inputText");
+
+  if (!rawNum) return;
+
+  if (/\b(sd|s\/d|festivo)\b/i.test(rawNum)) {
+    checkFestivo.checked = true;
+  } else if (/\b(lmxjv|laborable)\b/i.test(rawNum)) {
+    checkFestivo.checked = false;
+  }
+
+  var num = rawNum.replace(/\b(sd|s\/d|festivo|lmxjv|laborable)\b/gi, "").replace(/[()]/g, "").trim();
+
+  if (turnosGraficoDB.hasOwnProperty(num)) {
+    var entrada = turnosGraficoDB[num];
+    var contenido = "";
+
+    if (entrada.comun) {
+      contenido = entrada.comun;
+    } else if (checkFestivo.checked && entrada.sd) {
+      contenido = entrada.sd;
+    } else if (entrada.lmxjv) {
+      contenido = entrada.lmxjv;
+    }
+
+    if (contenido) {
+      txt.value = contenido;
+    }
+  }
+  ejecutarProcesamiento();
 }
 
 function copiarDirectoParaWord() {
   var inputEl = document.getElementById("inputText");
   if (!inputEl || !inputEl.value.trim()) {
-    mostrarAviso("El cuadro está vacío. Pega al menos un turno antes de copiar.", "err");
+    mostrarAviso("El cuadro está vacío. Introduce un turno o selecciona una fecha.", "err");
     return;
   }
 
@@ -835,18 +1205,64 @@ function copiarDirectoParaWord() {
   }
 }
 
+function inicializarDatalist() {
+  var dl = document.getElementById("turnosList");
+  var keys = Object.keys(turnosGraficoDB).sort(function(a, b) {
+    return parseInt(a, 10) - parseInt(b, 10);
+  });
+  for (var i = 0; i < keys.length; i++) {
+    var opt = document.createElement("option");
+    opt.value = keys[i];
+    dl.appendChild(opt);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
+  inicializarDatalist();
+
   var btnW = document.getElementById("btnCopiarWord");
   var btnL = document.getElementById("btnLimpiar");
   var txt = document.getElementById("inputText");
+  var inputTurno = document.getElementById("metaTurnoNum");
+  var inputFecha = document.getElementById("metaFecha");
+  var checkFestivo = document.getElementById("metaFestivo");
+  var badge = document.getElementById("fechaBadge");
 
   if (btnW) btnW.addEventListener("click", copiarDirectoParaWord);
+
   if (btnL) btnL.addEventListener("click", function() {
     txt.value = "";
+    inputTurno.value = "";
+    inputFecha.value = "";
+    checkFestivo.checked = false;
+    if (badge) badge.style.display = "none";
     ejecutarProcesamiento();
-    txt.focus();
+    inputTurno.focus();
   });
-  if (txt) txt.addEventListener("input", ejecutarProcesamiento);
+
+  inputTurno.addEventListener("input", buscarYDesplegarTurno);
+
+  checkFestivo.addEventListener("change", function() {
+    buscarYDesplegarTurno();
+  });
+
+  inputFecha.addEventListener("change", function() {
+    var d = parseFechaSegura(inputFecha.value);
+    if (d) {
+      var ev = evaluarFestivoCompleto(d);
+      checkFestivo.checked = ev.esFestivo;
+      if (badge) {
+        badge.textContent = ev.motivo;
+        badge.className = ev.esFestivo ? "badge-tag badge-festivo" : "badge-tag badge-laborable";
+        badge.style.display = "inline-block";
+      }
+    } else {
+      if (badge) badge.style.display = "none";
+    }
+    buscarYDesplegarTurno();
+  });
+
+  txt.addEventListener("input", ejecutarProcesamiento);
 
   ejecutarProcesamiento();
 });
