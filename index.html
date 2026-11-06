@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TAREAS DESDE 7 DE NOVIEMBRE - Rodalies Catalunya</title>
+<title>TAREAS DESDE 7 DE NOVIEMBRE - CER-71801-VUG-148V</title>
 <style>
   :root {
     --bg-main: #0b1120;
@@ -258,15 +258,6 @@
     border: 1px solid var(--danger-border);
   }
 
-  .section-label {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin: 20px 0 8px 0;
-  }
-
   .preview-box {
     background-color: #ffffff;
     color: #000000;
@@ -275,19 +266,7 @@
     border: 1px solid #cbd5e1;
     overflow-x: auto;
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
-  }
-
-  pre {
-    background-color: var(--bg-input);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 16px;
-    color: #cbd5e1;
-    font-family: "Consolas", "Courier New", monospace;
-    font-size: 13px;
-    white-space: pre-wrap;
-    overflow-x: auto;
-    margin: 0;
+    margin-top: 6px;
   }
 </style>
 </head>
@@ -295,12 +274,12 @@
 
 <div class="container">
   <h1>TAREAS DESDE 7 DE NOVIEMBRE</h1>
-  <p class="subtitle">Entrada en vigor: 07/11/2026 &bull; Rodalies de Catalunya &bull; Barcelona Sants</p>
+  <p class="subtitle">CER-71801-VUG-148V &bull; Entrada en vigor: 07/11/2026 &bull; Residencia Vilanova (VUG)</p>
 
   <div class="meta-panel">
     <div class="field-group">
       <label for="metaTurnoNum">Nº de Turno:</label>
-      <input type="text" id="metaTurnoNum" list="turnosList" placeholder="Ej: 101, 102, 487..." autofocus autocomplete="off">
+      <input type="text" id="metaTurnoNum" list="turnosList" placeholder="Ej: 451, 487, 2209..." autofocus autocomplete="off">
       <datalist id="turnosList"></datalist>
     </div>
 
@@ -318,7 +297,7 @@
     </div>
   </div>
 
-  <textarea id="inputText" placeholder="Al poner el número de turno se cargará aquí automáticamente, o puedes pegar texto libre..."></textarea>
+  <textarea id="inputText" placeholder="Al escribir el turno se cargará aquí automáticamente..."></textarea>
 
   <div class="btn-row">
     <button id="btnCopiarWord" class="word-btn" type="button">📋 Copiar directo para Word</button>
@@ -327,13 +306,9 @@
 
   <div id="statusBox"></div>
 
-  <div class="section-label">Vista previa generada para Word (Sin Coche ni Casa):</div>
   <div id="visualWordTable" class="preview-box">
     <span style="color: #718096;">Introduce un turno o selecciona una fecha...</span>
   </div>
-
-  <div class="section-label">Vista previa en Markdown:</div>
-  <pre id="outputText"></pre>
 </div>
 
 <script>
@@ -409,53 +384,23 @@ function parseFechaSegura(val) {
   return null;
 }
 
-// ==========================================
-// BASE DE DATOS ACTUALIZADA CON EL PDF DE NOVIEMBRE
-// ==========================================
+// ======================================================================
+// BASE DE DATOS EXCLUSIVA DEL CUADRO CER-71801-VUG-148V (07/11/2026)
+// ======================================================================
+var t2201 = "12:21 BR 12:36 >> 13:36 SC 25527\nSC 14:02 15:21 BT 25532\nBT 15:48 16:04 BR 25541\nBR 16:36 17:36 SC 25543\nSC 18:00 I I I 19:04 BR 19:19 V25548";
+var t2202 = "11:12 BR 11:27 >> 11:42 BT 28284\nBT 11:58 12:59 VU 28289\nVU 13:38 14:25 BR 28296\nBR 15:15 15:59 VU 28363\nVU 16:38 << 17:25 BR 17:40 28370";
+var t2203 = "10:52 BR 11:07 I 11:14 LH V77722\nLH 11:15 11:48 MR 77722\nMR 12:03 12:42 BR 77627\nBR 13:22 14:28 VF 77532\nVF 14:29 14:34 EN 36233\nEN 14:47 14:52 VF 36238\nVF 14:53 << 15:57 BR 16:12 77438";
+var t2204 = "VU 08:00 15:13 VU RVA";
+var t2205 = "BR 06:30 13:43 BR RVA";
+var t2208 = "BR 06:30 13:43 BR RVA";
+var t2209 = "04:38 BR 04:53 I I 05:13 BT TX\nBT 05:13 05:28 BT AC\nBT 05:28 06:29 VU 28263\nVU 07:05 08:09 BT 28254\nBT 08:28 I 08:43 BR V28275\nBR 09:09 09:26 AE 28414\nAE 09:38 << 09:58 BR 10:13 25416";
+var t2210 = "05:10 BR 05:25 I I 06:05 VU TX\nVU 06:05 06:20 VU AC\nVU 06:20 06:35 SC 37877\nSC 07:02 08:21 BT 25504\nBT 08:48 10:06 SC 25513\nSC 10:32 10:51 VU 25518\nVU 10:52 I I 11:34 BR 11:49 V25518";
+var t2211 = "05:34 BR 05:49 I I 06:29 VU TX\nVU 06:29 06:44 VU AC\nVU 06:44 07:48 BT 25500\nBT 08:18 09:36 SC 25511\nSC 09:55 << 11:27 BR 11:42 77420";
+var t2215 = "11:42 BR 11:57 >> 12:12 BT 28286\nBT 12:28 13:29 VU 28291\nVU 14:08 14:55 BR 28298\nBR 15:45 16:29 VU 28365\nVU 17:08 << 17:55 BR 18:10 28372";
+
 var turnosGraficoDB = {
-  // Pág. 1
-  "101": {
-    "lmxjv": "15:55 BR 16:10 >> 16:17 LH 25752\nLH 16:39 17:34 MT 25765\nMT 17:51 << 18:39 BR 18:54 25766\nBR 19:52 21:27 SC 77558\nSC 21:55 23:20 LH 77468\nLH 23:21 I 23:27 BR 23:42 V77468",
-    "sd": "16:12 BR 16:27 >> 16:42 BT 28366\nBT 16:58 17:13 BR 28371\nBR 17:39 17:56 AE 28448\nAE 18:08 19:06 GC 25450\nGC 19:06 19:29 GC AC\nGC 20:32 21:13 MR 78660\nMR 21:26 22:10 GC 78630\nGC 22:29 I I 23:07 BR 23:22 V28484"
-  },
-  "102": {
-    "lmxjv": "17:37 BR 17:52 I 18:03 CO V77550\nCO 18:13 18:17 LH 37802\nLH 19:12 20:12 TR 77991\nTR 20:12 20:45 TR AC\nTR 20:45 21:44 LH 77992\nLH 21:54 22:24 MQ 39537\nMQ 22:24 23:00 MQ AC\nMQ 23:00 I I 23:21 BR 23:36 V77766",
-    "sd": "16:21 BR 16:36 >> 16:51 BT 25538\nBT 17:18 17:34 BR 25547\nBR 18:07 18:48 MR 77750\nMR 19:03 19:35 LH 77654\nLH 20:18 21:52 BL 25683\nBL 21:52 22:07 BL AC\nBL 22:07 I I I 23:07 BR 23:22 TX"
-  },
-  "103": {
-    "lmxjv": "15:38 BR 15:53 >> 16:15 CF 28578\nCF 16:25 17:27 GC 28532\nGC 18:32 19:13 MR 78656\nMR 19:26 20:10 GC 78626\nGC 20:10 20:44 GC AC\nGC 20:44 21:21 BR 28512\nBR 21:40 21:47 LH 25686\nLH 21:57 22:18 BT 37897\nBT 22:48 I 23:04 BR 23:19 V25567",
-    "sd": "14:51 BR 15:06 >> 16:06 SC 25537\nSC 16:30 17:34 BR 25542\nBR 18:07 I 18:14 LH V77750\nLH 19:06 20:05 TR 77653\nTR 20:06 20:32 MA 36293\nMA 20:47 I I 21:37 BR 21:52 TX"
-  },
-  "104": {
-    "lmxjv": "17:22 BR 17:37 >> 18:18 MR 77748\nMR 18:33 19:05 LH 77653\nLH 19:06 I 19:12 BR V77652\nBR 19:37 20:18 MR 77756\nMR 20:33 21:05 LH 77660\nLH 22:18 23:52 BL 25691\nBL 23:52 << 00:07 BL 00:22 AC",
-    "sd": "17:42 BR 17:57 >> 18:12 BT 28372\nBT 18:28 18:43 BR 28377\nBR 19:36 19:51 BT 25550\nBT 20:18 20:34 BR 25559\nBR 21:19 21:26 LH 25684\nLH 21:48 23:37 MM 25689\nMM 23:37 00:07 MM AC\nMM 00:07 I 00:22 BL 00:37 TX"
-  },
-  "105": {
-    "lmxjv": "11:38 BL 11:53 >> 13:26 LH 25640\nLH 14:18 15:52 BL 25643\nBL 16:53 << 18:18 BR 18:33 25666",
-    "sd": "11:38 BL 11:53 >> 13:18 BR 25640\nBR 14:28 15:57 MA 77432\nMA 16:24 << 17:51 BR 18:06 77550"
-  },
-  "109": {
-    "lmxjv": "15:21 BR 15:36 >> 16:36 SC 25539\nSC 17:00 18:04 BR 25544\nBR 18:06 18:21 BT 25544\nBT 18:48 19:04 BR 25553\nBR 19:57 20:12 BT 28380\nBT 20:28 21:29 VU 28385\nVU 21:50 I I 22:34 BR 22:49 V25478",
-    "sd": "14:21 BR 14:36 >> 15:36 SC 25535\nSC 15:55 17:27 BR 77444\nBR 18:04 18:11 LH 25832\nLH 19:36 20:35 TR 77654\nTR 20:35 21:00 TR AC\nTR 21:00 I I I 21:51 BR 22:06 V77566"
-  },
-
-  // Pág. 30 (Serie 400 actualizada)
-  "401": {
-    "lmxjv": "18:40 BR 18:55 >> 20:37 MM 25671\nMM 21:09 22:48 BR 25694\nBR 00:01 00:14 BQ 25472\nBQ 00:24 00:35 BT 39514\nBT 00:35 00:50 BT AC\nBT 00:50 I 01:10 BR 01:25 TX",
-    "sd": "17:13 BR 17:28 >> 18:57 MA 77444\nMA 19:24 22:27 SC 77562\nSC 22:50 I I 23:37 BR 23:52 V30898"
-  },
-  "402": {
-    "lmxjv": "18:21 BR 18:36 >> 18:51 BT 25546\nBT 19:18 19:34 BR 25555\nBR 19:58 21:23 MA 77454\nMA 21:58 00:03 MR 77766\nMR 00:03 00:18 MR AC\nMR 00:18 I I 00:43 BR 00:58 TX",
-    "sd": "20:21 BR 20:36 >> 21:36 SC 25559\nSC 21:57 23:20 BT 25566\nBT 23:20 23:49 BT AC\nBT 23:49 00:50 VU 28393\nVU 01:05 I I 01:50 BR 02:05 TX"
-  },
-  "403": {
-    "lmxjv": "18:22 BR 18:37 >> 19:18 MR 77752\nMR 19:33 20:05 LH 77657\nLH 20:06 I 20:12 BR V77656\nBR 21:09 21:26 AE 28463\nAE 21:38 22:57 SL 25464\nSL 22:57 23:10 SL AC\nSL 23:10 23:24 GC 37892\nGC 23:24 23:39 GC AC\nGC 23:39 I I 00:19 BR 00:34 TX",
-    "sd": "16:43 BR 16:58 >> 17:50 TR 77442\nTR 18:15 19:48 MR 77754\nMR 20:03 21:05 MQ 77658\nMQ 21:05 21:15 MQ AC\nMQ 22:00 I 22:21 BR V77568\nBR 22:36 22:51 BT 25478\nBT 22:51 23:21 BT AC\nBT 23:21 I 23:41 BR 23:56 TX"
-  },
-
-  // Pág. 34 (Serie VUG actualizada)
   "451": {
-    "lmxjv": "20:21 BR 20:36 >> 21:36 SC 25559\nSC 21:57 23:20 BT 25566\nBT 23:20 23:49 BT AC\nBT 23:49 00:50 VU 28393\nVU 01:05 I I 01:45 BR 02:00 TX",
+    "lmxjv": "20:21 BR 20:36 >> 21:36 SC 25559\nSC 21:57 23:20 BT 25566\nBT 23:20 23:49 BT AC *PREPARA 28393*\nBT 23:49 00:50 VU 28393\nVU 01:05 I I 01:45 BR 02:00 TX",
     "sd": "17:21 BR 17:36 >> 17:51 BT 25542\nBT 18:18 19:36 SC 25551\nSC 20:00 21:04 BR 25556\nBR 21:22 22:57 SC 77564\nSC 23:12 I I I 00:12 BR 00:27 TX"
   },
   "452": {
@@ -463,144 +408,140 @@ var turnosGraficoDB = {
     "sd": "17:12 BR 17:27 >> 17:42 BT 28370\nBT 17:58 18:59 VU 28375\nVU 19:38 20:42 BT 28382\nBT 20:42 20:58 BT AC\nBT 20:58 21:59 VU 28387\nVU 21:59 23:20 VU AC\nVU 23:20 I I 00:00 BR 00:15 TX"
   },
   "453": {
-    "lmxjv": "16:30 BR 16:45 >> 17:29 VU 28369\r\nVU 18:08 18:55 BR 28376\r\nBR 19:45 20:29 VU 28381\r\nVU 21:08 22:12 BT 28390\r\nBT 22:12 22:48 BT AC\r\nBT 22:48 I 23:04 BR 23:19 V25567",
-    "sd": "16:21 BR 16:36 >> 17:36 SC 25543\r\nSC 18:00 19:21 BT 25548\r\nBT 19:21 19:48 BT AC\r\nBT 19:48 20:04 BR 25557\r\nBR 21:06 21:21 BT 25556\r\nBT 21:21 21:47 BT AC\r\nBT 21:48 23:06 SC 25565\r\nSC 23:20 I I I 00:20 BR 00:35 TX"
+    "lmxjv": "16:30 BR 16:45 >> 17:29 VU 28369\nVU 18:08 18:55 BR 28376\nBR 19:45 20:29 VU 28381\nVU 21:08 22:12 BT 28390\nBT 22:12 22:48 BT AC\nBT 22:48 I 23:04 BR 23:19 V25567",
+    "sd": "16:21 BR 16:36 >> 17:36 SC 25543\nSC 18:00 19:21 BT 25548\nBT 19:21 19:48 BT AC\nBT 19:48 20:04 BR 25557\nBR 21:06 21:21 BT 25556\nBT 21:21 21:47 BT AC\nBT 21:48 23:06 SC 25565\nSC 23:20 I I I 00:20 BR 00:35 TX"
   },
   "454": {
-    "lmxjv": "22:24 BR 22:39 >> 22:56 AE 28482\r\nAE 23:08 23:44 BQ 25470\r\nBQ 23:54 00:05 BT 39512\r\nBT 00:05 /////////////////// 04:57 BT SC\r\nBT 04:57 I 05:12 BR 05:27 V28557",
-    "sd": "22:24 BR 22:39 >> 22:56 AE 28482\r\nAE 23:08 23:44 BQ 25470\r\nBQ 23:54 00:05 BT 39512\r\nBT 00:05 /////////////////// 04:57 BT SC\r\nBT 04:57 I 05:12 BR 05:27 V28557"
+    "lmxjv": "22:24 BR 22:39 >> 22:56 AE 28482\nAE 23:08 23:44 BQ 25470\nBQ 23:54 00:05 BT 39512\nBT 00:05 /////////////////// 04:57 BT SC\nBT 04:57 I 05:12 BR 05:27 V28557",
+    "sd": "22:24 BR 22:39 >> 22:56 AE 28482\nAE 23:08 23:44 BQ 25470\nBQ 23:54 00:05 BT 39512\nBT 00:05 /////////////////// 04:57 BT SC\nBT 04:57 I 05:12 BR 05:27 V28557"
   },
-  "455": {
-    "comun": "Salida sin servicio"
-  },
+  "455": { "comun": "Salida sin servicio" },
   "459": {
-    "lmxjv": "17:00 BR 17:15 >> 17:59 VU 28371\r\nVU 18:38 19:25 BR 28378\r\nBR 20:36 20:51 BT 25554\r\nBT 20:51 21:18 BT AC\r\nBT 21:18 22:36 SC 25563\r\nSC 22:36 22:45 SC AC\r\nSC 22:45 22:57 VU 37862\r\nVU 23:12 I I 23:52 BR 00:07 TX",
-    "sd": "16:42 BR 16:57 >> 17:12 BT 28368\r\nBT 17:28 18:29 VU 28373\r\nVU 19:08 20:12 BT 28380\r\nBT 20:12 20:28 BT AC\r\nBT 20:28 21:29 VU 28385\r\nVU 21:29 22:27 VU AC\r\nVU 23:02 I I 23:37 BR 23:52 V18098"
+    "lmxjv": "17:00 BR 17:15 >> 17:59 VU 28371\nVU 18:38 19:25 BR 28378\nBR 20:36 20:51 BT 25554\nBT 20:51 21:18 BT AC\nBT 21:18 22:36 SC 25563\nSC 22:36 22:45 SC AC\nSC 22:45 22:57 VU 37862\nVU 23:12 I I 23:52 BR 00:07 TX",
+    "sd": "16:42 BR 16:57 >> 17:12 BT 28368\nBT 17:28 18:29 VU 28373\nVU 19:08 20:12 BT 28380\nBT 20:12 20:28 BT AC\nBT 20:28 21:29 VU 28385\nVU 21:29 22:27 VU AC\nVU 23:02 I I 23:37 BR 23:52 V18098"
   },
   "460": {
     "lmxjv": "17:42 BR 17:57 >> 18:12 BT 28372\nBT 18:12 18:28 BT AC\nBT 18:28 19:29 VU 28377\nVU 20:08 21:12 BT 28384\nBT 21:28 22:29 VU 28389\nVU 22:29 23:02 VU AC\nVU 23:02 I I 23:37 BR 23:52 V18098",
     "sd": "17:51 BR 18:06 >> 18:21 BT 25544\nBT 18:48 20:06 SC 25553\nSC 20:30 21:51 BT 25558\nBT 21:51 22:19 BT AC\nBT 22:19 23:20 VU 28391\nVU 23:35 I I 00:20 BR 00:35 TX"
   },
-
-  // Pág. 37 (Serie 487 y 2200 actualizada)
   "461": {
-    "lmxjv": "19:24 BR 19:39 >> 19:56 AE 28456\r\nAE 20:08 21:28 SL 25458\r\nSL 21:28 22:34 SL AC\r\nSL 22:34 00:20 VU 28490\r\nVU 00:35 I I 01:15 BR 01:30 TX",
-    "sd": "17:00 BR 17:15 >> 17:59 VU 28371\r\nVU 18:38 19:25 BR 28378\r\nBR 21:09 21:26 AE 28462\r\nAE 21:38 22:57 SL 25464\r\nSL 22:57 23:12 SL AC\r\nSL 23:12 I I 00:00 BR 00:15 TX"
+    "lmxjv": "19:24 BR 19:39 >> 19:56 AE 28456\nAE 20:08 21:28 SL 25458\nSL 21:28 22:34 SL AC\nSL 22:34 00:20 VU 28490\nVU 00:35 I I 01:15 BR 01:30 TX",
+    "sd": "17:00 BR 17:15 >> 17:59 VU 28371\nVU 18:38 19:25 BR 28378\nBR 21:09 21:26 AE 28462\nAE 21:38 22:57 SL 25464\nSL 22:57 23:12 SL AC\nSL 23:12 I I 00:00 BR 00:15 TX"
   },
   "462": {
-    "comun": "22:51 BR 23:06 I I I 00:12 SC V25567\r\nSC 00:12 //////////////// 04:45 SC SC\r\nSC 04:45 I I I 05:45 BR 06:00 TX"
+    "comun": "22:51 BR 23:06 I I I 00:12 SC V25567\nSC 00:12 //////////////// 04:45 SC SC\nSC 04:45 I I I 05:45 BR 06:00 TX"
   },
-  "463": {
-    "comun": "Salida sin servicio"
-  },
+  "463": { "comun": "Salida sin servicio" },
   "467": {
-    "lmxjv": "13:42 BR 13:57 >> 14:12 BT 28294\r\nBT 14:28 15:29 VU 28299\r\nVU 16:08 16:55 BR 28368\r\nBR 17:45 18:29 VU 28373\r\nVU 19:08 << 19:55 BR 20:10 28380",
-    "sd": "13:30 BR 13:45 >> 14:29 VU 28295\r\nVU 15:08 15:55 BR 28364\r\nBR 16:13 17:05 TR 77641\r\nTR 17:15 18:06 BR 77750\r\nBR 18:57 19:12 BT 28376\r\nBT 19:12 19:28 BT AC\r\nBT 19:28 << 19:43 BR 19:58 28381"
+    "lmxjv": "13:42 BR 13:57 >> 14:12 BT 28294\nBT 14:28 15:29 VU 28299\nVU 16:08 16:55 BR 28368\nBR 17:45 18:29 VU 28373\nVU 19:08 << 19:55 BR 20:10 28380",
+    "sd": "13:30 BR 13:45 >> 14:29 VU 28295\nVU 15:08 15:55 BR 28364\nBR 16:13 17:05 TR 77641\nTR 17:15 18:06 BR 77750\nBR 18:57 19:12 BT 28376\nBT 19:12 19:28 BT AC\nBT 19:28 << 19:43 BR 19:58 28381"
   },
   "468": {
-    "lmxjv": "11:51 BR 12:06 >> 13:06 SC 25525\r\nSC 13:32 14:51 BT 25530\r\nBT 15:18 << 15:34 BR 15:49 25539",
-    "sd": "11:00 BR 11:15 >> 11:59 VU 28285\r\nVU 12:38 13:42 BT 28292\r\nBT 13:58 14:59 VU 28297\r\nVU 15:38 << 16:25 BR 16:40 28366"
+    "lmxjv": "11:51 BR 12:06 >> 13:06 SC 25525\nSC 13:32 14:51 BT 25530\nBT 15:18 << 15:34 BR 15:49 25539",
+    "sd": "11:00 BR 11:15 >> 11:59 VU 28285\nVU 12:38 13:42 BT 28292\nBT 13:58 14:59 VU 28297\nVU 15:38 << 16:25 BR 16:40 28366"
   },
   "469": {
-    "lmxjv": "09:54 BR 10:09 >> 10:26 AE 28418\r\nAE 10:38 10:58 BR 25420\r\nBR 11:22 12:28 VF 77524\r\nVF 12:29 12:34 EN 36225\r\nEN 12:47 12:52 VF 36230\r\nVF 12:53 13:57 BR 77430\r\nBR 14:39 14:56 AE 28436\r\nAE 15:08 << 15:28 BR 15:43 25438",
-    "sd": "09:51 BR 10:06 I 10:21 BT V25512\r\nBT 10:48 12:06 SC 25521\r\nSC 12:32 13:51 BT 25526\r\nBT 14:18 14:34 BR 25535\r\nBR 15:09 15:26 AE 28438\r\nAE 15:38 << 15:58 BR 16:13 25440"
+    "lmxjv": "09:54 BR 10:09 >> 10:26 AE 28418\nAE 10:38 10:58 BR 25420\nBR 11:22 12:28 VF 77524\nVF 12:29 12:34 EN 36225\nEN 12:47 12:52 VF 36230\nVF 12:53 13:57 BR 77430\nBR 14:39 14:56 AE 28436\nAE 15:08 << 15:28 BR 15:43 25438",
+    "sd": "09:51 BR 10:06 I 10:21 BT V25512\nBT 10:48 12:06 SC 25521\nSC 12:32 13:51 BT 25526\nBT 14:18 14:34 BR 25535\nBR 15:09 15:26 AE 28438\nAE 15:38 << 15:58 BR 16:13 25440"
   },
   "470": {
-    "lmxjv": "07:00 BR 07:15 I I 07:59 VU V28269\r\nVU 08:14 09:01 BR 25482\r\nBR 09:58 11:23 MA 77415\r\nMA 11:58 << 13:21 BR 13:36 77532",
-    "sd": "06:18 BR 06:33 I I 07:05 VU V30531\r\nVU 07:38 08:42 BT 28272\r\nBT 08:58 09:13 BR 28277\r\nBR 09:45 10:29 VU 28279\r\nVU 11:08 12:12 BT 28286\r\nBT 12:28 << 12:43 BR 12:58 28291"
+    "lmxjv": "07:00 BR 07:15 I I 07:59 VU V28269\nVU 08:14 09:01 BR 25482\nBR 09:58 11:23 MA 77415\nMA 11:58 << 13:21 BR 13:36 77532",
+    "sd": "06:18 BR 06:33 I I 07:05 VU V30531\nVU 07:38 08:42 BT 28272\nBT 08:58 09:13 BR 28277\nBR 09:45 10:29 VU 28279\nVU 11:08 12:12 BT 28286\nBT 12:28 << 12:43 BR 12:58 28291"
   },
   "471": {
-    "lmxjv": "03:40 BR 03:55 I I 04:35 VU TX\r\nVU 04:50 05:08 SC 37979\r\nSC 05:08 05:40 SC AC\r\nSC 05:40 07:26 GC 28506\r\nGC 07:26 08:09 GC AC\r\nGC 08:09 09:10 CF 28562\r\nCF 09:11 09:40 VU 37885\r\nVU 09:52 I I 10:34 BR 10:49 V25514",
-    "sd": "05:30 BR 05:45 I I 06:29 VU V28263\r\nVU 06:38 07:25 BR 28268\r\nBR 07:36 07:51 BT 25562\r\nBT 08:18 08:34 BR 25511\r\nBR 10:31 11:06 GC 25418\r\nGC 11:29 << 12:07 BR 12:22 28426"
+    "lmxjv": "03:40 BR 03:55 I I 04:35 VU TX\nVU 04:50 05:08 SC 37979\nSC 05:08 05:40 SC AC\nSC 05:40 07:26 GC 28506\nGC 07:26 08:09 GC AC\nGC 08:09 09:10 CF 28562\nCF 09:11 09:40 VU 37885\nVU 09:52 I I 10:34 BR 10:49 V25514",
+    "sd": "05:30 BR 05:45 I I 06:29 VU V28263\nVU 06:38 07:25 BR 28268\nBR 07:36 07:51 BT 25562\nBT 08:18 08:34 BR 25511\nBR 10:31 11:06 GC 25418\nGC 11:29 << 12:07 BR 12:22 28426"
   },
   "475": {
-    "lmxjv": "17:12 BR 17:27 >> 17:42 BT 28370\r\nBT 17:58 18:59 VU 28375\r\nVU 19:38 20:42 BT 28382\r\nBT 20:42 20:58 BT AC\r\nBT 20:58 21:59 VU 28387\r\nVU 22:16 I I 23:03 BR 23:18 V25566",
-    "sd": "16:00 BR 16:15 >> 16:59 VU 28367\r\nVU 17:38 18:25 BR 28374\r\nBR 20:13 21:05 TR 77656\r\nTR 21:05 21:30 TR AC\r\nTR 21:30 23:00 MR 77568\r\nMR 23:00 23:18 MR AC\r\nMR 23:18 I 23:38 BR 23:53 TX"
+    "lmxjv": "17:12 BR 17:27 >> 17:42 BT 28370\nBT 17:58 18:59 VU 28375\nVU 19:38 20:42 BT 28382\nBT 20:42 20:58 BT AC\nBT 20:58 21:59 VU 28387\nVU 22:16 I I 23:03 BR 23:18 V25566",
+    "sd": "16:00 BR 16:15 >> 16:59 VU 28367\nVU 17:38 18:25 BR 28374\nBR 20:13 21:05 TR 77656\nTR 21:05 21:30 TR AC\nTR 21:30 23:00 MR 77568\nMR 23:00 23:18 MR AC\nMR 23:18 I 23:38 BR 23:53 TX"
   },
   "476": {
-    "comun": "14:00 BR 14:15 I I 14:59 VU V28297\r\nVU 15:00 /////////////////// 20:08 VU SC\r\nVU 20:08 I I 20:55 BR 21:10 V28384"
+    "comun": "14:00 BR 14:15 I I 14:59 VU V28297\nVU 15:00 /////////////////// 20:08 VU SC\nVU 20:08 I I 20:55 BR 21:10 V28384"
   },
   "477": {
-    "lmxjv": "18:51 BR 19:06 >> 20:06 SC 25553\r\nSC 20:30 21:51 BT 25558\r\nBT 21:51 22:19 BT AC\r\nBT 22:19 23:20 VU 28391\r\nVU 23:35 I I 00:15 BR 00:30 TX",
-    "sd": "19:54 BR 20:09 >> 20:26 AE 28458\r\nAE 20:38 21:58 SL 25460\r\nSL 22:34 00:20 VU 28490\r\nVU 00:35 I I 01:20 BR 01:35 TX"
+    "lmxjv": "18:51 BR 19:06 >> 20:06 SC 25553\nSC 20:30 21:51 BT 25558\nBT 21:51 22:19 BT AC\nBT 22:19 23:20 VU 28391\nVU 23:35 I I 00:15 BR 00:30 TX",
+    "sd": "19:54 BR 20:09 >> 20:26 AE 28458\nAE 20:38 21:58 SL 25460\nSL 22:34 00:20 VU 28490\nVU 00:35 I I 01:20 BR 01:35 TX"
   },
   "478": {
-    "lmxjv": "18:46 BR 19:01 >> 19:58 SL 25452\r\nSL 20:37 21:37 BR 28464\r\nBR 22:50 23:05 BT 25564\r\nBT 23:12 23:31 MO 39515\r\nMO 00:35 01:05 SL 35571\r\nSL 01:05 << 01:20 SL 01:35 AC",
-    "sd": "18:46 BR 19:01 >> 19:58 SL 25452\r\nSL 21:00 21:37 SL AC\r\nSL 21:37 22:37 BR 28482\r\nBR 22:50 I 23:05 BT V25564\r\nBT 23:12 23:31 MO 39515\r\nMO 00:35 01:05 SL 35571\r\nSL 01:05 << 01:20 SL 01:35 AC"
+    "lmxjv": "18:46 BR 19:01 >> 19:58 SL 25452\nSL 20:37 21:37 BR 28464\nBR 22:50 23:05 BT 25564\nBT 23:12 23:31 MO 39515\nMO 00:35 01:05 SL 35571\nSL 01:05 << 01:20 SL 01:35 AC",
+    "sd": "18:46 BR 19:01 >> 19:58 SL 25452\nSL 21:00 21:37 SL AC\nSL 21:37 22:37 BR 28482\nBR 22:50 I 23:05 BT V25564\nBT 23:12 23:31 MO 39515\nMO 00:35 01:05 SL 35571\nSL 01:05 << 01:20 SL 01:35 AC"
   },
   "479": {
-    "lmxjv": "12:52 SL 13:07 >> 14:07 BR 28434\r\nBR 15:07 I 15:14 LH V77738\r\nLH 15:15 15:48 MR 77738\r\nMR 16:03 16:42 BR 77642\r\nBR 17:07 I 17:14 LH V77746\r\nLH 17:15 17:48 MR 77746\r\nMR 18:03 << 18:42 BR 18:57 77650",
-    "sd": "12:22 SL 12:37 >> 13:56 AE 28432\r\nAE 14:08 14:28 BR 25434\r\nBR 15:22 16:28 VF 77540\r\nVF 16:29 16:34 EN 36241\r\nEN 16:47 16:52 VF 36246\r\nVF 16:53 << 17:57 BR 18:12 77446"
+    "lmxjv": "12:52 SL 13:07 >> 14:07 BR 28434\nBR 15:07 I 15:14 LH V77738\nLH 15:15 15:48 MR 77738\nMR 16:03 16:42 BR 77642\nBR 17:07 I 17:14 LH V77746\nLH 17:15 17:48 MR 77746\nMR 18:03 << 18:42 BR 18:57 77650",
+    "sd": "12:22 SL 12:37 >> 13:56 AE 28432\nAE 14:08 14:28 BR 25434\nBR 15:22 16:28 VF 77540\nVF 16:29 16:34 EN 36241\nEN 16:47 16:52 VF 36246\nVF 16:53 << 17:57 BR 18:12 77446"
   },
   "483": {
-    "lmxjv": "12:51 BR 13:06 >> 13:21 BT 25524\r\nBT 13:48 14:04 BR 25533\r\nBR 14:27 14:42 BT 28296\r\nBT 14:58 15:13 BR 28363\r\nBR 15:31 16:28 SL 25438\r\nSL 17:07 << 18:07 BR 18:22 28450",
-    "sd": "13:07 BR 13:22 >> 14:28 VF 77532\r\nVF 14:29 14:34 EN 36233\r\nEN 14:47 14:52 VF 36238\r\nVF 14:53 15:50 LH 77438\r\nLH 16:18 16:24 BR 25653\r\nBR 18:37 19:18 MR 77752\r\nMR 19:33 << 20:12 BR 20:27 77656"
+    "lmxjv": "12:51 BR 13:06 >> 13:21 BT 25524\nBT 13:48 14:04 BR 25533\nBR 14:27 14:42 BT 28296\nBT 14:58 15:13 BR 28363\nBR 15:31 16:28 SL 25438\nSL 17:07 << 18:07 BR 18:22 28450",
+    "sd": "13:07 BR 13:22 >> 14:28 VF 77532\nVF 14:29 14:34 EN 36233\nEN 14:47 14:52 VF 36238\nVF 14:53 15:50 LH 77438\nLH 16:18 16:24 BR 25653\nBR 18:37 19:18 MR 77752\nMR 19:33 << 20:12 BR 20:27 77656"
   },
   "484": {
-    "lmxjv": "11:00 BR 11:15 >> 11:59 VU 28285\r\nVU 12:38 13:25 BR 28292\r\nBR 14:15 14:59 VU 28297\r\nVU 15:38 16:42 BT 28366\r\nBT 16:58 << 17:13 BR 17:28 28371",
-    "sd": "11:21 BR 11:36 >> 11:51 BT 25518\r\nBT 12:18 12:34 BR 25527\r\nBR 13:06 13:21 BT 25524\r\nBT 13:48 15:06 SC 25533\r\nSC 15:30 << 16:34 BR 16:49 25538"
+    "lmxjv": "11:00 BR 11:15 >> 11:59 VU 28285\nVU 12:38 13:25 BR 28292\nBR 14:15 14:59 VU 28297\nVU 15:38 16:42 BT 28366\nBT 16:58 << 17:13 BR 17:28 28371",
+    "sd": "11:21 BR 11:36 >> 11:51 BT 25518\nBT 12:18 12:34 BR 25527\nBR 13:06 13:21 BT 25524\nBT 13:48 15:06 SC 25533\nSC 15:30 << 16:34 BR 16:49 25538"
   },
   "485": {
     "lmxjv": "BR 08:00 15:13 BR RVA",
     "sd": "BR 08:00 15:13 BR RVA"
   },
   "486": {
-    "comun": "06:51 BR 07:06 I 07:21 BT V25502\r\nBT 07:21 /////////////////// 12:58 BT SC\r\nBT 12:58 I 13:13 BR 13:28 V28293"
+    "comun": "06:51 BR 07:06 I 07:21 BT V25502\nBT 07:21 /////////////////// 12:58 BT SC\nBT 12:58 I 13:13 BR 13:28 V28293"
   },
   "487": {
     "lmxjv": "03:39 BR 03:54 I I 04:34 VU TX\nVU 04:34 05:14 VU AC\nVU 05:14 06:00 BR 28500\nBR 07:06 08:06 SC 25505\nSC 08:32 09:51 BT 28276\nBT 10:18 << 10:34 BR 10:49 25519",
     "sd": "04:05 BR 04:20 I I 05:00 VU TX\nVU 05:14 06:17 BT 28250\nBT 06:17 06:48 BT AC\nBT 06:48 08:06 SC 25505\nSC 08:32 09:51 BT 28276\nBT 10:18 << 10:34 BR 10:49 25519"
   },
-  "2201": { "comun": "12:21 BR 12:36 >> 13:36 SC 25527\nSC 14:02 15:21 BT 25532\nBT 15:48 16:04 BR 25541\nBR 16:36 17:36 SC 25543\nSC 18:00 I I I 19:04 BR 19:19 V25548" },
-  "2202": { "comun": "11:12 BR 11:27 >> 11:42 BT 28284\nBT 11:58 12:59 VU 28289\nVU 13:38 14:25 BR 28296\nBR 15:15 15:59 VU 28363\nVU 16:38 << 17:25 BR 17:40 28370" },
-  "2203": { "comun": "10:52 BR 11:07 I 11:14 LH V77722\nLH 11:15 11:48 MR 77722\nMR 12:03 12:42 BR 77627\nBR 13:22 14:28 VF 77532\nVF 14:29 14:34 EN 36233\nEN 14:47 14:52 VF 36238\nVF 14:53 << 15:57 BR 16:12 77438" },
-  "2204": { "comun": "VU 08:00 15:13 VU RVA" },
-  "2205": { "comun": "BR 06:30 13:43 BR RVA" },
-  "2208": { "comun": "BR 06:30 13:43 BR RVA" },
-  "2209": { "comun": "04:38 BR 04:53 I I 05:13 BT TX\nBT 05:13 05:28 BT AC\nBT 05:28 06:29 VU 28263\nVU 07:05 08:09 BT 28254\nBT 08:28 I 08:43 BR V28275\nBR 09:09 09:26 AE 28414\nAE 09:38 << 09:58 BR 10:13 25416" },
-  "2210": { "comun": "05:10 BR 05:25 I I 06:05 VU TX\nVU 06:05 06:20 VU AC\nVU 06:20 06:35 SC 37877\nSC 07:02 08:21 BT 25504\nBT 08:48 10:06 SC 25513\nSC 10:32 10:51 VU 25518\nVU 10:52 I I 11:34 BR 11:49 V25518" },
-  "2211": { "comun": "05:34 BR 05:49 I I 06:29 VU TX\nVU 06:29 06:44 VU AC\nVU 06:44 07:48 BT 25500\nBT 08:18 09:36 SC 25511\nSC 09:55 << 11:27 BR 11:42 77420" },
-  "2212": { "comun": "12:21 BR 12:36 >> 13:36 SC 25527\nSC 14:02 15:21 BT 25532\nBT 15:48 16:04 BR 25541\nBR 16:36 17:36 SC 25543\nSC 18:00 I I I 19:04 BR 19:19 V25548" },
-  "2215": { "comun": "11:42 BR 11:57 >> 12:12 BT 28286\nBT 12:28 13:29 VU 28291\nVU 14:08 14:55 BR 28298\nBR 15:45 16:29 VU 28365\nVU 17:08 << 17:55 BR 18:10 28372" },
-  "2216": { "comun": "10:52 BR 11:07 I 11:14 LH V77722\nLH 11:15 11:48 MR 77722\nMR 12:03 12:42 BR 77627\nBR 13:22 14:28 VF 77532\nVF 14:29 14:34 EN 36233\nEN 14:47 14:52 VF 36238\nVF 14:53 << 15:57 BR 16:12 77438" },
-  "2217": { "comun": "VU 08:00 15:13 VU RVA" },
-  "2218": { "comun": "BR 06:30 13:43 BR RVA" },
-  "2219": { "comun": "BR 06:30 13:43 BR RVA" },
-  "2222": { "comun": "04:38 BR 04:53 I I 05:13 BT TX\nBT 05:13 05:28 BT AC\nBT 05:28 06:29 VU 28263\nVU 07:05 08:09 BT 28254\nBT 08:28 I 08:43 BR V28275\nBR 09:09 09:26 AE 28414\nAE 09:38 << 09:58 BR 10:13 25416" },
-  "2223": { "comun": "05:10 BR 05:25 I I 06:05 VU TX\nVU 06:05 06:20 VU AC\nVU 06:20 06:35 SC 37877\nSC 07:02 08:21 BT 25504\nBT 08:48 10:06 SC 25513\nSC 10:32 10:51 VU 25518\nVU 10:52 I I 11:34 BR 11:49 V25518" },
-  "2224": { "comun": "05:34 BR 05:49 I I 06:29 VU TX\nVU 06:29 06:44 VU AC\nVU 06:44 07:48 BT 25500\nBT 08:18 09:36 SC 25511\nSC 09:55 << 11:27 BR 11:42 77420" },
-  "2225": { "comun": "12:21 BR 12:36 >> 13:36 SC 25527\nSC 14:02 15:21 BT 25532\nBT 15:48 16:04 BR 25541\nBR 16:36 17:36 SC 25543\nSC 18:00 I I I 19:04 BR 19:19 V25548" },
-  "2226": { "comun": "11:42 BR 11:57 >> 12:12 BT 28286\nBT 12:28 13:29 VU 28291\nVU 14:08 14:55 BR 28298\nBR 15:45 16:29 VU 28365\nVU 17:08 << 17:55 BR 18:10 28372" },
-  "2229": { "comun": "11:12 BR 11:27 >> 11:42 BT 28284\nBT 11:58 12:59 VU 28289\nVU 13:38 14:25 BR 28296\nBR 15:15 15:59 VU 28363\nVU 16:38 << 17:25 BR 17:40 28370" },
-  "2230": { "comun": "VU 08:00 15:13 VU RVA" },
-  "2231": { "comun": "BR 06:30 13:43 BR RVA" },
-  "2232": { "comun": "BR 06:30 13:43 BR RVA" },
-  "2233": { "comun": "04:38 BR 04:53 I I 05:13 BT TX\nBT 05:13 05:28 BT AC\nBT 05:28 06:29 VU 28263\nVU 07:05 08:09 BT 28254\nBT 08:28 I 08:43 BR V28275\nBR 09:09 09:26 AE 28414\nAE 09:38 << 09:58 BR 10:13 25416" },
-  "2236": { "comun": "05:10 BR 05:25 I I 06:05 VU TX\nVU 06:05 06:20 VU AC\nVU 06:20 06:35 SC 37877\nSC 07:02 08:21 BT 25504\nBT 08:48 10:06 SC 25513\nSC 10:32 10:51 VU 25518\nVU 10:52 I I 11:34 BR 11:49 V25518" },
-  "2237": { "comun": "05:34 BR 05:49 I I 06:29 VU TX\nVU 06:29 06:44 VU AC\nVU 06:44 07:48 BT 25500\nBT 08:18 09:36 SC 25511\nSC 09:55 << 11:27 BR 11:42 77420" },
-  "2238": { "comun": "12:21 BR 12:36 >> 13:36 SC 25527\nSC 14:02 15:21 BT 25532\nBT 15:48 16:04 BR 25541\nBR 16:36 17:36 SC 25543\nSC 18:00 I I I 19:04 BR 19:19 V25548" },
-  "2239": { "comun": "11:42 BR 11:57 >> 12:12 BT 28286\nBT 12:28 13:29 VU 28291\nVU 14:08 14:55 BR 28298\nBR 15:45 16:29 VU 28365\nVU 17:08 << 17:55 BR 18:10 28372" },
-  "2240": { "comun": "11:12 BR 11:27 >> 11:42 BT 28284\nBT 11:58 12:59 VU 28289\nVU 13:38 14:25 BR 28296\nBR 15:15 15:59 VU 28363\nVU 16:38 << 17:25 BR 17:40 28370" },
-  "2243": { "comun": "10:52 BR 11:07 I 11:14 LH V77722\nLH 11:15 11:48 MR 77722\nMR 12:03 12:42 BR 77627\nBR 13:22 14:28 VF 77532\nVF 14:29 14:34 EN 36233\nEN 14:47 14:52 VF 36238\nVF 14:53 << 15:57 BR 16:12 77438" },
-  "2244": { "comun": "BR 06:30 13:43 BR RVA" },
-  "2245": { "comun": "BR 06:30 13:43 BR RVA" },
-  "2246": { "comun": "04:38 BR 04:53 I I 05:13 BT TX\nBT 05:13 05:28 BT AC\nBT 05:28 06:29 VU 28263\nVU 07:05 08:09 BT 28254\nBT 08:28 I 08:43 BR V28275\nBR 09:09 09:26 AE 28414\nAE 09:38 << 09:58 BR 10:13 25416" },
-  "2247": { "comun": "05:10 BR 05:25 I I 06:05 VU TX\nVU 06:05 06:20 VU AC\nVU 06:20 06:35 SC 37877\nSC 07:02 08:21 BT 25504\nBT 08:48 10:06 SC 25513\nSC 10:32 10:51 VU 25518\nVU 10:52 I I 11:34 BR 11:49 V25518" },
-  "2250": { "comun": "05:34 BR 05:49 I I 06:29 VU TX\nVU 06:29 06:44 VU AC\nVU 06:44 07:48 BT 25500\nBT 08:18 09:36 SC 25511\nSC 09:55 << 11:27 BR 11:42 77420" },
-  "2251": { "comun": "12:21 BR 12:36 >> 13:36 SC 25527\nSC 14:02 15:21 BT 25532\nBT 15:48 16:04 BR 25541\nBR 16:36 17:36 SC 25543\nSC 18:00 I I I 19:04 BR 19:19 V25548" },
-  "2252": { "comun": "11:42 BR 11:57 >> 12:12 BT 28286\nBT 12:28 13:29 VU 28291\nVU 14:08 14:55 BR 28298\nBR 15:45 16:29 VU 28365\nVU 17:08 << 17:55 BR 18:10 28372" },
-  "2253": { "comun": "11:12 BR 11:27 >> 11:42 BT 28284\nBT 11:58 12:59 VU 28289\nVU 13:38 14:25 BR 28296\nBR 15:15 15:59 VU 28363\nVU 16:38 << 17:25 BR 17:40 28370" },
-  "2254": { "comun": "10:52 BR 11:07 I 11:14 LH V77722\nLH 11:15 11:48 MR 77722\nMR 12:03 12:42 BR 77627\nBR 13:22 14:28 VF 77532\nVF 14:29 14:34 EN 36233\nEN 14:47 14:52 VF 36238\nVF 14:53 << 15:57 BR 16:12 77438" },
-  "2257": { "comun": "VU 08:00 15:13 VU RVA" },
-  "2258": { "comun": "BR 06:30 13:43 BR RVA" },
-  "2259": { "comun": "04:38 BR 04:53 I I 05:13 BT TX\nBT 05:13 05:28 BT AC\nBT 05:28 06:29 VU 28263\nVU 07:05 08:09 BT 28254\nBT 08:28 I 08:43 BR V28275\nBR 09:09 09:26 AE 28414\nAE 09:38 << 09:58 BR 10:13 25416" },
-  "2260": { "comun": "05:10 BR 05:25 I I 06:05 VU TX\nVU 06:05 06:20 VU AC\nVU 06:20 06:35 SC 37877\nSC 07:02 08:21 BT 25504\nBT 08:48 10:06 SC 25513\nSC 10:32 10:51 VU 25518\nVU 10:52 I I 11:34 BR 11:49 V25518" },
-  "2261": { "comun": "05:34 BR 05:49 I I 06:29 VU TX\nVU 06:29 06:44 VU AC\nVU 06:44 07:48 BT 25500\nBT 08:18 09:36 SC 25511\nSC 09:55 << 11:27 BR 11:42 77420" },
-  "2264": { "comun": "BR 06:30 13:43 BR RVA" },
-  "2265": { "comun": "11:42 BR 11:57 >> 12:12 BT 28286\nBT 12:28 13:29 VU 28291\nVU 14:08 14:55 BR 28298\nBR 15:45 16:29 VU 28365\nVU 17:08 << 17:55 BR 18:10 28372" },
-  "2266": { "comun": "11:12 BR 11:27 >> 11:42 BT 28284\nBT 11:58 12:59 VU 28289\nVU 13:38 14:25 BR 28296\nBR 15:15 15:59 VU 28363\nVU 16:38 << 17:25 BR 17:40 28370" },
-  "2267": { "comun": "10:52 BR 11:07 I 11:14 LH V77722\nLH 11:15 11:48 MR 77722\nMR 12:03 12:42 BR 77627\nBR 13:22 14:28 VF 77532\nVF 14:29 14:34 EN 36233\nEN 14:47 14:52 VF 36238\nVF 14:53 << 15:57 BR 16:12 77438" },
-  "2268": { "comun": "VU 08:00 15:13 VU RVA" }
+
+  // Serie 2200 exclusiva de VUG
+  "2201": { "comun": t2201 },
+  "2202": { "comun": t2202 },
+  "2203": { "comun": t2203 },
+  "2204": { "comun": t2204 },
+  "2205": { "comun": t2205 },
+  "2208": { "comun": t2208 },
+  "2209": { "comun": t2209 },
+  "2210": { "comun": t2210 },
+  "2211": { "comun": t2211 },
+  "2212": { "comun": t2201 },
+  "2215": { "comun": t2215 },
+  "2216": { "comun": t2203 },
+  "2217": { "comun": t2204 },
+  "2218": { "comun": t2205 },
+  "2219": { "comun": t2208 },
+  "2222": { "comun": t2209 },
+  "2223": { "comun": t2210 },
+  "2224": { "comun": t2211 },
+  "2225": { "comun": t2201 },
+  "2226": { "comun": t2215 },
+  "2229": { "comun": t2202 },
+  "2230": { "comun": t2204 },
+  "2231": { "comun": t2205 },
+  "2232": { "comun": t2208 },
+  "2233": { "comun": t2209 },
+  "2236": { "comun": t2210 },
+  "2237": { "comun": t2211 },
+  "2238": { "comun": t2201 },
+  "2239": { "comun": t2215 },
+  "2240": { "comun": t2202 },
+  "2243": { "comun": t2203 },
+  "2244": { "comun": t2205 },
+  "2245": { "comun": t2208 },
+  "2246": { "comun": t2209 },
+  "2247": { "comun": t2210 },
+  "2250": { "comun": t2211 },
+  "2251": { "comun": t2201 },
+  "2252": { "comun": t2215 },
+  "2253": { "comun": t2202 },
+  "2254": { "comun": t2203 },
+  "2257": { "comun": t2204 },
+  "2258": { "comun": t2208 },
+  "2259": { "comun": t2209 },
+  "2260": { "comun": t2210 },
+  "2261": { "comun": t2211 },
+  "2264": { "comun": t2205 },
+  "2265": { "comun": t2215 },
+  "2266": { "comun": t2202 },
+  "2267": { "comun": t2203 },
+  "2268": { "comun": t2204 }
 };
 
 var estacionesDict = {
@@ -658,12 +599,6 @@ var estacionesDict = {
   "calella": "(CY)",
   "blanes": "(BL)"
 };
-
-var trenes32 = [
-  "25515", "25517", "25519", "25521", "25523", "25525", "25527", "25529",
-  "25538", "25540", "25542", "25544", "25546", "25548", "25550", "25552",
-  "25554", "25556", "25558", "25560"
-];
 
 var trenes25ExtraVerde = ["25480", "25482", "25486", "25500", "25510"];
 
@@ -803,7 +738,7 @@ function procesarUnTurno(bloqueTexto) {
     var matches = rawLine.match(/\b([012]?\d:[0-5]\d)\b/g);
     if (!matches || matches.length < 2) continue;
 
-    var isSC = (line.indexOf("act. complem") !== -1 || line.indexOf("servicios complementarios") !== -1 || line.endsWith(" ac") || line.indexOf(" ac ") !== -1 || line.endsWith(" sc"));
+    var isSC = (line.indexOf("act. complem") !== -1 || line.indexOf("servicios complementarios") !== -1 || line.endsWith(" ac") || line.indexOf(" ac ") !== -1);
     var isSinServicio = (line.indexOf("viajes sin servicio") !== -1 || line.indexOf("viajero") !== -1 || line.indexOf("taxi") !== -1 || line.indexOf(" tx") !== -1 || line.indexOf(" vj") !== -1);
     var isConduccion = (line.indexOf("conducción") !== -1 || line.indexOf("conduccion") !== -1);
 
@@ -846,8 +781,7 @@ function procesarUnTurno(bloqueTexto) {
         finHora = matches[2];
         deje = matches[3];
       } else if (matches.length === 3) {
-        var esTomaAlInicio = /^\s*[012]?\d:[0-5]\d\b/.test(rawLine) && rawLine.indexOf("<<") === -1 && rawLine.indexOf(">>") === -1 && (rawLine.indexOf(" I ") !== -1 || rawLine.indexOf(" II ") !== -1);
-        var esDejeFinal = !esTomaAlInicio && (rawLine.indexOf("<<") !== -1 || rawLine.indexOf(" I ") !== -1 || rawLine.indexOf(" II ") !== -1 || k === lines.length - 1);
+        var esDejeFinal = (rawLine.indexOf("<<") !== -1 || rawLine.indexOf(" I ") !== -1 || rawLine.indexOf(" II ") !== -1 || k === lines.length - 1);
         if (esDejeFinal) {
           toma = "—";
           inicioHora = matches[0];
@@ -888,11 +822,6 @@ function procesarUnTurno(bloqueTexto) {
     }
 
     if (tren === "28506") tren = "28506-27+VU35";
-
-    var cleanTrenNum = tren.replace(/^v\s*/, "");
-    if (esFestivoFinal && trenes32.indexOf(cleanTrenNum) !== -1) {
-      if (!tren.endsWith("-32")) tren += "-32";
-    }
 
     if (!isSinServicio && !isSC && line.indexOf("act.") === -1 && tren !== "rva") {
       isConduccion = true;
@@ -995,7 +924,7 @@ function procesarUnTurno(bloqueTexto) {
     }
   }
 
-  // UMBRAL DE FATIGA A 4H (240 MINUTOS)
+  // LÍMITE A 5:30 SI NO HAY RESET O SI FATIGA >= 4H (240 MIN)
   var limite = "";
   if (!hayReset || maxFatigaMin >= 240) {
     limite = "5:30";
@@ -1028,7 +957,6 @@ function procesarUnTurno(bloqueTexto) {
   }
   titulo = titulo.replace(/\s+/g, ' ').trim();
 
-  // Markdown limpio sin coche ni casa
   var md = titulo + "\n\n";
   md += "| límite | jornada total | conducción real | descanso total | fatiga |\n";
   md += "| :---: | :---: | :---: | :---: | :---: |\n";
@@ -1056,7 +984,6 @@ function procesarUnTurno(bloqueTexto) {
     fatigaContenidoWord = '<span style="background-color: #ffff00; mso-highlight: yellow; padding: 1px 4px; border-radius: 2px;">' + fatigaReport + '</span>';
   }
 
-  // Tabla 1: Resumen (Exactamente 5 columnas sin coche ni casa)
   htmlWord += '<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: none !important; mso-border-alt: none !important; font-family: Calibri, sans-serif; font-size: 12pt; width: 19.2cm; max-width: 19.2cm; margin-left: auto; margin-right: auto; margin-bottom: 16pt; table-layout: fixed; color: #000000;">';
   htmlWord += '<tr>';
   htmlWord += '<td style="' + t1HeaderStyle + ' width: 2.2cm;">límite</td>';
@@ -1075,7 +1002,6 @@ function procesarUnTurno(bloqueTexto) {
   htmlWord += '</tr>';
   htmlWord += '</table><br style="line-height: 8pt;">';
 
-  // Tabla 2: Servicios
   htmlWord += '<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: none !important; mso-border-alt: none !important; font-family: Calibri, sans-serif; font-size: 12pt; width: 19.2cm; max-width: 19.2cm; margin-left: auto; margin-right: auto; table-layout: fixed;">';
   htmlWord += '<tr style="color: #000000;">';
   htmlWord += '<td style="' + t2BaseStyle + ' width: 2.9cm;">tren</td>';
@@ -1134,6 +1060,7 @@ function procesarUnTurno(bloqueTexto) {
 }
 
 var rawHtmlParaWord = "";
+var rawMdGlobal = "";
 
 function ejecutarProcesamiento() {
   var inputEl = document.getElementById("inputText");
@@ -1143,20 +1070,10 @@ function ejecutarProcesamiento() {
   if (!input || input.trim().length === 0) {
     var b = document.getElementById("statusBox");
     if (b) b.style.display = "none";
-    document.getElementById("outputText").innerText = "";
     document.getElementById("visualWordTable").innerHTML = '<span style="color: #718096;">Introduce un turno o selecciona una fecha...</span>';
     rawHtmlParaWord = "";
+    rawMdGlobal = "";
     return 0;
-  }
-
-  if (/^salida sin servicio$/i.test(input.trim())) {
-    var turnoSinServicioMatch = document.getElementById("metaTurnoNum").value.trim().match(/^\d+/);
-    var tituloSinServicio = turnoSinServicioMatch ? "Turno " + turnoSinServicioMatch[0] + " — Salida sin servicio" : "Salida sin servicio";
-    document.getElementById("outputText").innerText = tituloSinServicio;
-    document.getElementById("visualWordTable").textContent = tituloSinServicio;
-    rawHtmlParaWord = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'></head><body><p style='font-family:Calibri,sans-serif;font-size:12pt;'>" + tituloSinServicio + "</p></body></html>";
-    mostrarAviso("Turno procesado: salida sin servicio.", "ok");
-    return 1;
   }
 
   var rawLines = input.split("\n");
@@ -1218,7 +1135,7 @@ function ejecutarProcesamiento() {
   docCompleto += "</body></html>";
 
   rawHtmlParaWord = docCompleto;
-  document.getElementById("outputText").innerText = mdGlobal.trim();
+  rawMdGlobal = mdGlobal.trim();
   document.getElementById("visualWordTable").innerHTML = htmlVisual;
 
   mostrarAviso("Turno procesado correctamente.", "ok");
@@ -1272,7 +1189,7 @@ function copiarDirectoParaWord() {
   var copiado = false;
   function onCopy(e) {
     e.clipboardData.setData("text/html", rawHtmlParaWord);
-    e.clipboardData.setData("text/plain", document.getElementById("outputText").innerText);
+    e.clipboardData.setData("text/plain", rawMdGlobal);
     e.preventDefault();
     copiado = true;
   }
@@ -1287,7 +1204,7 @@ function copiarDirectoParaWord() {
 
   if (!copiado && navigator.clipboard && navigator.clipboard.write) {
     var blobHtml = new Blob([rawHtmlParaWord], { type: "text/html" });
-    var blobText = new Blob([document.getElementById("outputText").innerText], { type: "text/plain" });
+    var blobText = new Blob([rawMdGlobal], { type: "text/plain" });
     navigator.clipboard.write([
       new ClipboardItem({ "text/html": blobHtml, "text/plain": blobText })
     ]).then(function() {
