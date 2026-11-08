@@ -279,7 +279,7 @@
   <div class="meta-panel">
     <div class="field-group">
       <label for="metaTurnoNum">Nº de Turno:</label>
-      <input type="text" id="metaTurnoNum" list="turnosList" placeholder="Ej: 451, 487, 2209..." autofocus autocomplete="off">
+      <input type="text" id="metaTurnoNum" list="turnosList" placeholder="Ej: 471, 487, 2209..." autofocus autocomplete="off">
       <datalist id="turnosList"></datalist>
     </div>
 
@@ -750,9 +750,10 @@ function procesarUnTurno(bloqueTexto) {
     var finSigla = "";
     var deje = "—";
 
+    // 1. Actividades Complementarias
     if (isSC) {
       tren = "sc";
-      if (rawLine.indexOf(">>") !== -1 && matches.length >= 3) {
+      if ((rawLine.indexOf(">>") !== -1 || k === 0) && matches.length >= 3) {
         toma = matches[0];
         inicioHora = matches[1];
         finHora = matches[2];
@@ -767,10 +768,19 @@ function procesarUnTurno(bloqueTexto) {
       inicioSigla = getSigla(preTime) || "(VU)";
       finSigla = inicioSigla;
     } else {
-      var matchNum = rawLine.match(/\b([vV]?\d{4,5}|taxi|TAXI|rva|RVA)\b/);
-      tren = matchNum ? matchNum[1].toLowerCase() : "";
+      // 2. Reconocimiento de TX como TAXI y captura de números de tren
+      var esTaxi = /\b(taxi|tx)\b/i.test(rawLine);
+      var matchNum = rawLine.match(/\b([vV]?\d{4,5}|rva|RVA)\b/);
 
-      if (rawLine.indexOf(">>") !== -1 && matches.length >= 3) {
+      if (esTaxi) {
+        tren = "taxi";
+        isSinServicio = true;
+      } else {
+        tren = matchNum ? matchNum[1].toLowerCase() : "";
+      }
+
+      // Si tiene >> o es la PRIMERA línea con 3 horas (como el taxi de presentación)
+      if ((rawLine.indexOf(">>") !== -1 || k === 0) && matches.length >= 3) {
         toma = matches[0];
         inicioHora = matches[1];
         finHora = matches[2];
@@ -781,6 +791,7 @@ function procesarUnTurno(bloqueTexto) {
         finHora = matches[2];
         deje = matches[3];
       } else if (matches.length === 3) {
+        // Línea con relevo o deje final (<<, I, II o última tarea)
         var esDejeFinal = (rawLine.indexOf("<<") !== -1 || rawLine.indexOf(" I ") !== -1 || rawLine.indexOf(" II ") !== -1 || k === lines.length - 1);
         if (esDejeFinal) {
           toma = "—";
@@ -924,9 +935,11 @@ function procesarUnTurno(bloqueTexto) {
     }
   }
 
-  // LÍMITE A 5:30 SI NO HAY RESET O SI FATIGA >= 4H (240 MIN)
+  // LÍMITE: 7:13 si la conducción continuada pasa de 4 horas (> 240 min)
   var limite = "";
-  if (!hayReset || maxFatigaMin >= 240) {
+  if (maxFatigaMin > 240) {
+    limite = "7:13";
+  } else if (!hayReset) {
     limite = "5:30";
   } else {
     limite = "";
@@ -934,7 +947,7 @@ function procesarUnTurno(bloqueTexto) {
 
   var fatigaReport = formatDuration(maxFatigaMin) + " (" + maxBloqueIdx + "º bloque)";
   var fatigaConAsterisco = false;
-  if (maxFatigaMin >= 240) {
+  if (maxFatigaMin > 240) {
     fatigaReport = "* " + fatigaReport;
     fatigaConAsterisco = true;
   }
@@ -957,8 +970,9 @@ function procesarUnTurno(bloqueTexto) {
   }
   titulo = titulo.replace(/\s+/g, ' ').trim();
 
+  // Markdown con "conducción efectiva" y "cond. cont."
   var md = titulo + "\n\n";
-  md += "| límite | jornada total | conducción real | descanso total | fatiga |\n";
+  md += "| límite | jornada total | conducción efectiva | descanso total | cond. cont. |\n";
   md += "| :---: | :---: | :---: | :---: | :---: |\n";
   md += "| " + limite + " | " + formatDuration(jornadaTotalMin) + " | " + formatDuration(conduccionTotalMin) + " | " + formatDuration(descansoTotalMin) + " | " + fatigaReport + " |\n\n";
 
@@ -984,13 +998,14 @@ function procesarUnTurno(bloqueTexto) {
     fatigaContenidoWord = '<span style="background-color: #ffff00; mso-highlight: yellow; padding: 1px 4px; border-radius: 2px;">' + fatigaReport + '</span>';
   }
 
+  // Tabla 1: Resumen de Word (conducción efectiva y cond. cont.)
   htmlWord += '<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: none !important; mso-border-alt: none !important; font-family: Calibri, sans-serif; font-size: 12pt; width: 19.2cm; max-width: 19.2cm; margin-left: auto; margin-right: auto; margin-bottom: 16pt; table-layout: fixed; color: #000000;">';
   htmlWord += '<tr>';
   htmlWord += '<td style="' + t1HeaderStyle + ' width: 2.2cm;">límite</td>';
   htmlWord += '<td style="' + t1HeaderStyle + ' width: 4.0cm;">jornada total</td>';
-  htmlWord += '<td style="' + t1HeaderStyle + ' width: 4.2cm;">conducción real</td>';
+  htmlWord += '<td style="' + t1HeaderStyle + ' width: 4.2cm;">conducción efectiva</td>';
   htmlWord += '<td style="' + t1HeaderStyle + ' width: 4.0cm;">descanso total</td>';
-  htmlWord += '<td style="' + t1HeaderStyle + ' width: 4.8cm;">fatiga</td>';
+  htmlWord += '<td style="' + t1HeaderStyle + ' width: 4.8cm;">cond. cont.</td>';
   htmlWord += '</tr>';
 
   htmlWord += '<tr>';
@@ -1002,6 +1017,7 @@ function procesarUnTurno(bloqueTexto) {
   htmlWord += '</tr>';
   htmlWord += '</table><br style="line-height: 8pt;">';
 
+  // Tabla 2: Servicios
   htmlWord += '<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: none !important; mso-border-alt: none !important; font-family: Calibri, sans-serif; font-size: 12pt; width: 19.2cm; max-width: 19.2cm; margin-left: auto; margin-right: auto; table-layout: fixed;">';
   htmlWord += '<tr style="color: #000000;">';
   htmlWord += '<td style="' + t2BaseStyle + ' width: 2.9cm;">tren</td>';
@@ -1204,7 +1220,7 @@ function copiarDirectoParaWord() {
 
   if (!copiado && navigator.clipboard && navigator.clipboard.write) {
     var blobHtml = new Blob([rawHtmlParaWord], { type: "text/html" });
-    var blobText = new Blob([rawMdGlobal], { type: "text/plain" });
+    var blobText = new Blob([document.getElementById("outputText") ? document.getElementById("outputText").innerText : rawMdGlobal], { type: "text/plain" });
     navigator.clipboard.write([
       new ClipboardItem({ "text/html": blobHtml, "text/plain": blobText })
     ]).then(function() {
