@@ -970,9 +970,9 @@ function procesarUnTurno(bloqueTexto) {
   }
   titulo = titulo.replace(/\s+/g, ' ').trim();
 
-  // Markdown con "conducción efectiva" y "cond. cont."
+  // Markdown con "conducción efectiva" y "conducción continua"
   var md = titulo + "\n\n";
-  md += "| límite | jornada total | conducción efectiva | descanso total | cond. cont. |\n";
+  md += "| límite | jornada total | conducción efectiva | descanso total | conducción continua |\n";
   md += "| :---: | :---: | :---: | :---: | :---: |\n";
   md += "| " + limite + " | " + formatDuration(jornadaTotalMin) + " | " + formatDuration(conduccionTotalMin) + " | " + formatDuration(descansoTotalMin) + " | " + fatigaReport + " |\n\n";
 
@@ -998,14 +998,14 @@ function procesarUnTurno(bloqueTexto) {
     fatigaContenidoWord = '<span style="background-color: #ffff00; mso-highlight: yellow; padding: 1px 4px; border-radius: 2px;">' + fatigaReport + '</span>';
   }
 
-  // Tabla 1: Resumen de Word (conducción efectiva y cond. cont.)
+  // Tabla 1: Resumen de Word (conducción efectiva y conducción continua)
   htmlWord += '<table border="0" align="center" cellpadding="0" cellspacing="0" style="border-collapse: collapse; border: none !important; mso-border-alt: none !important; font-family: Calibri, sans-serif; font-size: 12pt; width: 19.2cm; max-width: 19.2cm; margin-left: auto; margin-right: auto; margin-bottom: 16pt; table-layout: fixed; color: #000000;">';
   htmlWord += '<tr>';
   htmlWord += '<td style="' + t1HeaderStyle + ' width: 2.2cm;">límite</td>';
   htmlWord += '<td style="' + t1HeaderStyle + ' width: 4.0cm;">jornada total</td>';
   htmlWord += '<td style="' + t1HeaderStyle + ' width: 4.2cm;">conducción efectiva</td>';
   htmlWord += '<td style="' + t1HeaderStyle + ' width: 4.0cm;">descanso total</td>';
-  htmlWord += '<td style="' + t1HeaderStyle + ' width: 4.8cm;">cond. cont.</td>';
+  htmlWord += '<td style="' + t1HeaderStyle + ' width: 4.8cm;">conducción continua</td>';
   htmlWord += '</tr>';
 
   htmlWord += '<tr>';
