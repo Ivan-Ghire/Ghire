@@ -791,7 +791,6 @@ function procesarUnTurno(bloqueTexto) {
         finHora = matches[2];
         deje = matches[3];
       } else if (matches.length === 3) {
-        // Línea con relevo o deje final (<<, I, II o última tarea)
         var esDejeFinal = (rawLine.indexOf("<<") !== -1 || rawLine.indexOf(" I ") !== -1 || rawLine.indexOf(" II ") !== -1 || k === lines.length - 1);
         if (esDejeFinal) {
           toma = "—";
@@ -896,14 +895,6 @@ function procesarUnTurno(bloqueTexto) {
     descansosFilas.push({ condMin: duracionFila, descStr: descStr, descMin: descMin });
   }
 
-  var hayReset = false;
-  for (var dIdx = 0; dIdx < descansosFilas.length; dIdx++) {
-    if (descansosFilas[dIdx].descMin >= 45) {
-      hayReset = true;
-      break;
-    }
-  }
-
   var bloquesFatiga = [];
   var currentBlockStart = null;
   var currentBlockEnd = null;
@@ -935,14 +926,12 @@ function procesarUnTurno(bloqueTexto) {
     }
   }
 
-  // LÍMITE: 7:13 si la conducción continuada pasa de 4 horas (> 240 min)
+  // LÍMITE: 7:13 si la conducción continua pasa de 4 horas (> 240 min), 9:30 si no llega a 4 horas
   var limite = "";
   if (maxFatigaMin > 240) {
     limite = "7:13";
-  } else if (!hayReset) {
-    limite = "5:30";
   } else {
-    limite = "";
+    limite = "9:30";
   }
 
   var fatigaReport = formatDuration(maxFatigaMin) + " (" + maxBloqueIdx + "º bloque)";
